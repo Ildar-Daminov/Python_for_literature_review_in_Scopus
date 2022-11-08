@@ -1,0 +1,216 @@
+2022-10-03 22:02:38,290 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:03:41,120 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:03:41,849 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:03:41,849 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:03:41,849 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:03:41,851 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:03:41,852 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:03:43,209 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:03:43,800 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:03:43,801 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:03:43,801 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:03:43,803 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:03:43,804 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:06:01,813 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:06:02,399 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:06:02,400 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:06:02,400 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:06:02,401 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:06:02,402 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:07:31,706 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:07:32,334 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:07:32,335 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:07:32,335 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:07:32,337 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:07:32,338 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:07:56,506 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/author/author_id/7004367821
+2022-10-03 22:07:57,311 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/author/author_id/7004367821
+2022-10-03 22:08:21,969 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/author/author_id/7004367821 to file
+2022-10-03 22:12:33,006 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/affiliation/affiliation_id/60101411
+2022-10-03 22:12:33,506 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/affiliation/affiliation_id/60101411
+2022-10-03 22:12:33,511 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/affiliation/affiliation_id/60101411 to file
+2022-10-03 22:12:34,506 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/abstract/scopus_id/84872135457
+2022-10-03 22:12:35,165 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/abstract/scopus_id/84872135457
+2022-10-03 22:12:35,253 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/abstract/scopus_id/84872135457 to file
+2022-10-03 22:12:36,165 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/pii/S1674927814000082
+2022-10-03 22:12:36,906 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/pii/S1674927814000082
+2022-10-03 22:12:36,951 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/pii/S1674927814000082 to file
+2022-10-03 22:12:37,906 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:12:38,757 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:12:38,760 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:12:44,674 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/author?query=authlast%28keuskamp%29
+2022-10-03 22:12:46,260 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/affiliation?query=affil%28amsterdam%29
+2022-10-03 22:12:47,787 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:12:50,729 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=25&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:12:53,061 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=50&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:12:56,158 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=75&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:12:58,779 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=100&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:01,725 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=125&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:04,354 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=150&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:06,730 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=175&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:09,197 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=200&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:11,483 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=225&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:14,351 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=250&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:16,723 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=275&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:18,814 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=300&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:20,865 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=325&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:23,002 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=350&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:13:24,107 - elsapy.utils - INFO - Converting prism:coverDate
+2022-10-03 22:13:25,072 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/sciencedirect?query=star+trek+vs+star+wars
+2022-10-03 22:21:28,462 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:21:29,051 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:21:29,052 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:21:29,053 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:21:29,054 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:21:29,056 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:21:29,464 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/author/author_id/7004367821
+2022-10-03 22:21:30,154 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/author/author_id/7004367821
+2022-10-03 22:21:30,172 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/author/author_id/7004367821 to file
+2022-10-03 22:21:31,155 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/affiliation/affiliation_id/60101411
+2022-10-03 22:21:31,809 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/affiliation/affiliation_id/60101411
+2022-10-03 22:21:31,812 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/affiliation/affiliation_id/60101411 to file
+2022-10-03 22:21:32,809 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/abstract/scopus_id/84872135457
+2022-10-03 22:21:33,416 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/abstract/scopus_id/84872135457
+2022-10-03 22:21:33,500 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/abstract/scopus_id/84872135457 to file
+2022-10-03 22:21:34,416 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/pii/S1674927814000082
+2022-10-03 22:21:35,011 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/pii/S1674927814000082
+2022-10-03 22:21:35,015 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/pii/S1674927814000082 to file
+2022-10-03 22:21:36,011 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:21:36,669 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:21:36,672 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:23:03,058 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/author/author_id/7004367821?view=documents
+2022-10-03 22:23:03,439 - elsapy.elsprofile - WARNING - ('HTTP 400 Error from https://api.elsevier.com/content/author/author_id/7004367821?view=documents\nand using headers {\'X-ELS-APIKey\': \'c5e773e9a1e38d7b6df9bf6acddcb25f\', \'User-Agent\': \'elsapy-v0.5.0\', \'Accept\': \'application/json\'}:\n{"service-error":{"status":{"statusCode":"INVALID_INPUT","statusText":"View parameter entered is not valid for this service"}}}',)
+2022-10-03 22:23:04,440 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/affiliation/affiliation_id/60101411?view=documents
+2022-10-03 22:23:04,853 - elsapy.elsprofile - WARNING - ('HTTP 400 Error from https://api.elsevier.com/content/affiliation/affiliation_id/60101411?view=documents\nand using headers {\'X-ELS-APIKey\': \'c5e773e9a1e38d7b6df9bf6acddcb25f\', \'User-Agent\': \'elsapy-v0.5.0\', \'Accept\': \'application/json\'}:\n{"service-error":{"status":{"statusCode":"INVALID_INPUT","statusText":"View parameter entered is not valid for this service"}}}',)
+2022-10-03 22:23:05,855 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/author?query=authlast%28keuskamp%29
+2022-10-03 22:23:07,402 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/affiliation?query=affil%28amsterdam%29
+2022-10-03 22:23:08,896 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:11,606 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=25&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:13,615 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=50&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:16,554 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=75&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:19,051 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=100&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:21,427 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=125&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:23,854 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=150&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:25,952 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=175&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:28,208 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=200&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:30,374 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=225&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:33,379 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=250&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:35,451 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=275&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:37,525 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=300&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:39,676 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=325&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:41,789 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/search/scopus?start=350&count=25&query=AFFIL%28dartmouth%29+AND+AUTHOR-NAME%28lewis%29+AND+PUBYEAR+%3E+2011
+2022-10-03 22:23:42,665 - elsapy.utils - INFO - Converting prism:coverDate
+2022-10-03 22:35:01,988 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:35:02,587 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:35:02,588 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:35:02,589 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:35:02,590 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:35:02,591 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:35:02,989 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:35:03,843 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:35:03,846 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:35:31,344 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:35:31,926 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:35:31,927 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:35:31,928 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:35:31,929 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:35:31,930 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:35:32,346 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:35:33,021 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:35:33,025 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:38:58,362 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:39:14,510 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:39:30,099 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:40:09,831 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:40:10,509 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:40:10,510 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:40:10,510 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:40:10,512 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:40:10,513 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:40:10,700 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:40:10,833 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:40:11,317 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:40:11,318 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:40:11,318 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:40:11,319 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:40:11,320 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:40:11,701 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:40:11,725 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:40:11,729 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:40:12,361 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5
+2022-10-03 22:40:12,365 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/S1525-1578(10)60571-5 to file
+2022-10-03 22:40:27,588 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:40:28,179 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:40:28,180 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:40:28,181 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:40:28,182 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:40:28,183 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:40:28,590 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/j.ijepes.2021.106886
+2022-10-03 22:40:29,608 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/j.ijepes.2021.106886
+2022-10-03 22:40:29,629 - elsapy.elsentity - INFO - Wrote https://api.elsevier.com/content/article/doi/10.1016/j.ijepes.2021.106886 to file
+2022-10-03 22:41:03,747 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:41:04,373 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:41:04,375 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:41:04,375 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:41:04,376 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:41:04,377 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:41:04,748 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/article/doi/10.1016/j.ijepes.2021.106886
+2022-10-03 22:41:05,531 - elsapy.elsentity - INFO - Data loaded for https://api.elsevier.com/content/article/doi/10.1016/j.ijepes.2021.106886
+2022-10-03 22:49:01,468 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 22:49:02,072 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 22:49:02,073 - elsapy.utils - INFO - Module loaded.
+2022-10-03 22:49:02,073 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 22:49:02,074 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 22:49:02,076 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 22:49:02,470 - elsapy.elsclient - INFO - Sending GET request to https://api.elsevier.com/content/abstract/scopus_id/56923985200
+2022-10-03 22:49:02,998 - elsapy.elsentity - WARNING - HTTP 404 Error from https://api.elsevier.com/content/abstract/scopus_id/56923985200
+and using headers {'X-ELS-APIKey': 'c5e773e9a1e38d7b6df9bf6acddcb25f', 'User-Agent': 'elsapy-v0.5.0', 'Accept': 'application/json'}:
+{"service-error":{"status":{"statusCode":"RESOURCE_NOT_FOUND","statusText":"The resource specified cannot be found."}}}
+2022-10-03 23:20:49,438 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:20:50,069 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:20:50,070 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:20:50,071 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:20:50,072 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:20:50,073 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:22:02,023 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:22:02,619 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:22:02,620 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:22:02,620 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:22:02,622 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:22:02,623 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:22:14,695 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:22:15,327 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:22:15,328 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:22:15,329 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:22:15,330 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:22:15,331 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:22:21,183 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:22:21,786 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:22:21,787 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:22:21,788 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:22:21,789 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:22:21,791 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:22:39,670 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:22:40,270 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:22:40,272 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:22:40,272 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:22:40,274 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:22:40,275 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:24:07,491 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:24:08,093 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:24:08,094 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:24:08,095 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:24:08,096 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:24:08,097 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:24:28,083 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:24:28,677 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:24:28,678 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:24:28,679 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:24:28,680 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:24:28,682 - elsapy.elssearch - INFO - Module loaded.
+2022-10-03 23:24:43,308 - elsapy.elsclient - INFO - Module loaded.
+2022-10-03 23:24:43,904 - elsapy.elsentity - INFO - Module loaded.
+2022-10-03 23:24:43,905 - elsapy.utils - INFO - Module loaded.
+2022-10-03 23:24:43,906 - elsapy.elsprofile - INFO - Module loaded.
+2022-10-03 23:24:43,907 - elsapy.elsdoc - INFO - Module loaded.
+2022-10-03 23:24:43,908 - elsapy.elssearch - INFO - Module loaded.
