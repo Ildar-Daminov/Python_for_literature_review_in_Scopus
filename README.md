@@ -1,3 +1,3 @@
 # Private working repository for SYSTER project
 
-This repository shares the python code for reconstructing the netwrok graph. More details will be added soon
+This python code reconstructs the graph of all related papers (indexed in scopus)for any given article. 
