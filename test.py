@@ -162,7 +162,7 @@ while number_analysed_papers!=len(paper_population): # while we do not analyze e
     print(' ')
     #time.sleep(2)    # Pause 3 seconds
         
-#----------------------------Fourth iteration: Processing the results----------------------------
+#----------------------------Third iteration: Processing the results----------------------------
 
 # Retreive a metadata from a population 
 df=functions.retrieve_paper_data()
