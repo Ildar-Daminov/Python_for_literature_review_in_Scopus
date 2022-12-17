@@ -190,6 +190,7 @@ class research_topic():
             print(' ')
             
         # ---------------------Postprocessing------------------------
+        print('Postprocessing of population')
         # Retreive a metadata from a population 
         df=functions.retrieve_paper_data(self.paper_population)
 
