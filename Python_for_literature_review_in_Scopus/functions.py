@@ -8,9 +8,9 @@ import numpy as np
 #--------------------------------------------------------------------
 
 # Create a global variable 
-global paper_population # list of paper eids related to a studied topic
-global publications_outside_scopus # list of relatve publications outside of scopus  
-global publications_with_errors
+# global paper_population # list of paper eids related to a studied topic
+# global publications_outside_scopus # list of relatve publications outside of scopus  
+# global publications_with_errors
 
 # Get_citing_papers for reference paper
 def get_citing_papers(reference_paper_eid):
@@ -30,8 +30,8 @@ def get_cited_papers(reference_paper_eid):
     return cited_papers 
 
 # Get eids for citing or cited paper 
-def get_EIDS(paper_object):
-    global publications_outside_scopus
+def get_EIDS(paper_object,publications_outside_scopus):
+    # global publications_outside_scopus
 
     eids_list=[]
     if paper_object is None:
@@ -55,50 +55,32 @@ def get_EIDS(paper_object):
                 else:
                     # print('No id. Probably reference is not in Scopus')
                     # print('Title:',paper_object[paper].fulltext)
-                    if "publications_outside_scopus" in globals(): # if variable is already created 
-                       publications_outside_scopus.append(str(paper_object[paper].fulltext))
-                    else: # if variable is not created yet
-                        # create "publications_outside_scopus" and append
-                        publications_outside_scopus=[] 
-                        publications_outside_scopus.append(str(paper_object[paper].fulltext))
+                    publications_outside_scopus.append(str(paper_object[paper].fulltext))
     return eids_list 
 
-def get_paper_population(eids_list):
-    global paper_population
+def get_paper_population(eids_list,paper_population):
+    # global paper_population
     
     if eids_list!=0: # eids_list is not a zero
-        if 'paper_population' in globals():
-            
-            # Append eids_list to paper population
-            for eid in range(len(eids_list)):
-                if eids_list[eid] in paper_population: 
-                    pass # do nothing 
-                
-                else: # eids_list[eid] is not in population 
-                    
-                    # Add eids_list[eid] into population
-                    paper_population.append(eids_list[eid])
 
-        else: # there is no variable "paper_population" in globals 
-                
-             # Create a paper population from given eids_list
-             paper_population=list(set(eids_list))
-             
-             # it works only once 
-             
-    else: # if eids_list==0
-        if 'paper_population' in globals(): # if paper_population exists
-            pass # do nothing 
-        
-        else: # if paper_population does not exist
-            paper_population=[] # create an empty list
+        # Append eids_list to paper population
+        for eid in range(len(eids_list)):
+            if eids_list[eid] in paper_population: 
+                pass # do nothing 
             
+            else: # eids_list[eid] is not in population 
+                # Add eids_list[eid] into population
+                paper_population.append(eids_list[eid])
+
+    else: # if eids_list==0
+        pass # do nothing 
+    
     return paper_population
 
 
-def check_related_articles(eid_list,keywords):
+def check_related_articles(eid_list,keywords,publications_with_errors):
     
-    global publications_with_errors
+    # global publications_with_errors
 
      # Selected keywords
     # keywords=['hosting capacity','Hosting capacity','hosting capacities', 'Hosting capacities']
@@ -139,14 +121,8 @@ def check_related_articles(eid_list,keywords):
                         
         except Exception as exception: # if any error with AbstractRetrieval occured
 
-            if "publications_with_errors" in globals(): # if variable is already created 
-                print(type(exception).__name__,'with ',paper_eid)
-                publications_with_errors.append([type(exception).__name__,'with ',paper_eid])
-            else: # if variable is not created yet
-                print(type(exception).__name__,'with ',paper_eid)
-                # create a list "publications_with_errors" and append
-                publications_with_errors=[] 
-                publications_with_errors.append([type(exception).__name__,'with ',paper_eid])
+            print(type(exception).__name__,'with ',paper_eid)
+            publications_with_errors.append([type(exception).__name__,'with ',paper_eid])
             pass
         
     # -------------------------------------------------------------------------------
@@ -174,12 +150,12 @@ def check_related_articles(eid_list,keywords):
    
    
 # Function to retrive the metadata for each paper from scopus populations
-def retrieve_paper_data():
+def retrieve_paper_data(paper_population):
     """
     This function retrieves the metadata for each paper from scopus populations 
     
     """
-    global  paper_population
+    # global  paper_population
     
     # Column names 
     column_names=['eid','title','publicationName','coverDate','refcount','citedby_count','doi']
@@ -209,7 +185,7 @@ def retrieve_paper_data():
            
     return df # return dataframe with retreived data for all papers in population 
 
-def ploting_connection_graph():
+def ploting_connection_graph(paper_population,publications_outside_scopus):
     """
     This function plots a population graph 
     """
@@ -220,7 +196,7 @@ def ploting_connection_graph():
     from bokeh.plotting import figure
     from bokeh.plotting import from_networkx
     
-    global paper_population
+    # global paper_population
     
     # Create column names 
     columns_name=['primary_list','secondary_list','Direction']
@@ -237,8 +213,8 @@ def ploting_connection_graph():
         cited_papers=get_cited_papers(paper_eid)
 
         # Get EID of these citing and cited papers 
-        eid_list_citing=get_EIDS(citing_papers)
-        eid_list_cited=get_EIDS(cited_papers)        
+        eid_list_citing=get_EIDS(citing_papers,publications_outside_scopus)
+        eid_list_cited=get_EIDS(cited_papers,publications_outside_scopus)        
         
         eid_list_citing = set(eid_list_citing) # convert to set 
         eid_list_cited=set(eid_list_cited)  # convert to set      
@@ -305,7 +281,7 @@ def ploting_connection_graph():
 
     return graph_df
 
-def calculate_connections_number(graph_df):
+def calculate_connections_number(graph_df,paper_population):
     """
     This function calculates the number of connections per each paper in a population
     """
@@ -317,7 +293,7 @@ def calculate_connections_number(graph_df):
     connections=df.groupby('primary_list').sum()
 
     # Extract metadata for population  
-    population_data=retrieve_paper_data()
+    population_data=retrieve_paper_data(paper_population)
 
     connections = pd.merge(population_data, connections,left_on='eid', right_on='primary_list')
 
