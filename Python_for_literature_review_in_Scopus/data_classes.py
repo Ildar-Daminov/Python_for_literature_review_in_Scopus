@@ -30,7 +30,7 @@ class research_topic():
 
         return self
     
-    def analyse(self):
+    def analyze(self):
         """
         Purpose:
         
@@ -189,23 +189,23 @@ class research_topic():
             print('Non_analysed:', len(non_analysed_papers))
             print(' ')
             
-            # ---------------------Third iteration------------------------
-            # Retreive a metadata from a population 
-            df=functions.retrieve_paper_data(self.paper_population)
+        # ---------------------Postprocessing------------------------
+        # Retreive a metadata from a population 
+        df=functions.retrieve_paper_data(self.paper_population)
 
-            # Sort papers by number of citations 
-            df=df.sort_values(by='citedby_count', ascending=False)
+        # Sort papers by number of citations 
+        df=df.sort_values(by='citedby_count', ascending=False)
 
-            # Save to excel file
-            df.to_excel('outputs.xlsx',sheet_name='Paper population',index=False)
+        # Save to excel file
+        df.to_excel('outputs.xlsx',sheet_name='Paper population',index=False)
 
-            # Ploting the graph of paper population 
-            graph_df=functions.ploting_connection_graph(self.paper_population,self.publications_outside_scopus)
+        # Ploting the graph of paper population 
+        graph_df=functions.ploting_connection_graph(self.paper_population,self.publications_outside_scopus)
 
-            # Calculate the number of connections 
-            df_connections,connections=functions.calculate_connections_number(graph_df,self.paper_population)    
-            connections.to_excel('connections.xlsx')
-            print(connections)
-            print('<<<<Execution is finalized>>>>')
+        # Calculate the number of connections 
+        df_connections,connections=functions.calculate_connections_number(graph_df,self.paper_population)    
+        connections.to_excel('connections.xlsx')
+        print(connections)
+        print('<<<<Execution is finalized>>>>')
             
-            return self
+        return self
