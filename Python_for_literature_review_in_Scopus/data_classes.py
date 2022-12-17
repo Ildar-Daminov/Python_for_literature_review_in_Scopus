@@ -28,7 +28,6 @@ class research_topic():
         self.number_analysed_papers=0    # empty list
    
 
-        return self
     
     def analyze(self):
         """
@@ -191,22 +190,16 @@ class research_topic():
             
         # ---------------------Postprocessing------------------------
         print('Postprocessing of population')
-        # Retreive a metadata from a population 
-        df=functions.retrieve_paper_data(self.paper_population)
-
-        # Sort papers by number of citations 
-        df=df.sort_values(by='citedby_count', ascending=False)
-
-        # Save to excel file
-        df.to_excel('outputs.xlsx',sheet_name='Paper population',index=False)
-
+        
         # Ploting the graph of paper population 
         graph_df=functions.ploting_connection_graph(self.paper_population,self.publications_outside_scopus)
 
         # Calculate the number of connections 
         df_connections,connections=functions.calculate_connections_number(graph_df,self.paper_population)    
-        connections.to_excel('connections.xlsx')
-        print(connections)
+        
+        
+        # Save an output
+        connections.to_excel(self.name+'_'+'outputs.xlsx')
         print('<<<<Execution is finalized>>>>')
-            
+
         return self
