@@ -7,39 +7,78 @@ import numpy as np
                     # Definition of functions # 
 #--------------------------------------------------------------------
 
-# Create a global variable 
-# global paper_population # list of paper eids related to a studied topic
-# global publications_outside_scopus # list of relatve publications outside of scopus  
-# global publications_with_errors
-
 # Get_citing_papers for reference paper
 def get_citing_papers(reference_paper_eid):
-    query = f"REF({reference_paper_eid})" # create a query 
-    try:
-        s = ScopusSearch(query) # search in scopus using a query 
-        citing_papers = s.results # extract data  on  papers , citing the reference paper 
-    except :
+    """
+    This function returns a list of citing papers for a given paper.
+    
+    INPUT:
+    - reference_paper_eid: the eid of paper in Scopus e.g 2-s2.0-85101235827
+    OUTPUT:
+    - citing_papers: citing papers of given eid
+    
+    """
+    # Create a query 
+    query = f"REF({reference_paper_eid})" 
+    
+    try: # try to query through ScopusSearch from pybliometrics
+        # Search in scopus using a query 
+        s = ScopusSearch(query) 
+        
+        # Extract data  on  papers , citing the reference paper 
+        citing_papers = s.results 
+    
+    except : # if any problem with the ScopusSearch from pybliometrics
+        
+        # Assume citing_papers as 0
         citing_papers=0
-
+        
     return citing_papers 
 
 # Get_cited_papers for given reference paper 
 def get_cited_papers(reference_paper_eid):
-    ss = AbstractRetrieval(reference_paper_eid, view='FULL') # Extract data on Abstact of reference paper
-    cited_papers = ss.references # extract the reference list of given paper (reference_paper_eid)
+    """
+    This function returns a list of references for a given paper. 
+    
+    INPUT:
+    - reference_paper_eid: the eid of paper in Scopus e.g 2-s2.0-85101235827
+    OUTPUT:
+    - cited_papers: references of given paper's eid
+    
+    """    
+    # Extract data on Abstact of reference paper
+    ss = AbstractRetrieval(reference_paper_eid, view='FULL') 
+    
+    # Extract the reference list of given paper (reference_paper_eid)
+    cited_papers = ss.references 
+    
     return cited_papers 
 
 # Get eids for citing or cited paper 
 def get_EIDS(paper_object,publications_outside_scopus):
-    # global publications_outside_scopus
-
+    """
+    This function returns a list of eids for a given paper according
+    to Scopus database. If paper is  not in Scopus, then it is saved 
+    into  publications_outside_scopus.
+    
+    INPUT:
+    - paper_object: information extracted from query using a ScopusSearch
+    - publications_outside_scopus - a list for saving the publications which are not available in Scopus 
+      
+    OUTPUT:
+    - eids_list: list of eids in Scopus database 
+    
+    """
+    # Create an empty list (for filling in)
     eids_list=[]
-    if paper_object is None:
-        pass
+    
+    # Checking some cases of paper_object
+    if paper_object is None: 
+        pass # do nothing 
     elif paper_object==0:
-        pass
+        pass # do nothing 
     elif len(paper_object)==0:
-        pass
+        pass # do nothing 
     else: 
         # Extract eids from paper object
         for paper in range(len(paper_object)):
@@ -50,22 +89,37 @@ def get_EIDS(paper_object,publications_outside_scopus):
                 
             else: # if eid does not exist then extract id (same as eid but without "2-s2.0-"")
                 
-                if  paper_object[paper].id is not None: 
+                if  paper_object[paper].id is not None:
+                    # Append the paper's id to eids_list 
                     eids_list.append("2-s2.0-"+str(paper_object[paper].id))
                 else:
-                    # print('No id. Probably reference is not in Scopus')
-                    # print('Title:',paper_object[paper].fulltext)
+                    # Append the paper name to the publications_outside_scopus 
                     publications_outside_scopus.append(str(paper_object[paper].fulltext))
     return eids_list 
 
 def get_paper_population(eids_list,paper_population):
-    # global paper_population
+    """
+    This function check if papers from eids_lista already exist in a 
+    population of papers (from Scopus). If yes, the code returns the 
+    exisitng population. If not, the code adds the papers into 
+    existing population and returns it.
+    
+    INPUT:
+    - eids_list: a list of papers - candidates for adding into a population 
+    - paper_population: the current population of papers on a given topic
+      
+    OUTPUT:
+    - paper_population: updated (or current) population of papers on 
+                        a given topic
+    
+    """
     
     if eids_list!=0: # eids_list is not a zero
 
         # Append eids_list to paper population
-        for eid in range(len(eids_list)):
-            if eids_list[eid] in paper_population: 
+        for eid in range(len(eids_list)): # for each eid from eids_list
+            
+            if eids_list[eid] in paper_population: # if eid is already in population 
                 pass # do nothing 
             
             else: # eids_list[eid] is not in population 
@@ -79,12 +133,22 @@ def get_paper_population(eids_list,paper_population):
 
 
 def check_related_articles(eid_list,keywords,publications_with_errors):
+    """
+    This function extracts only  papers corresponding to the given topic.
+    The criterion for keeping or not the paper is a presence of
+    predefined keywords in a paper's title, abstract or among author 
+    keywords.
     
-    # global publications_with_errors
+    INPUT:
+    - eids_list: a list of papers for processing on keywords  
+    - keywords: user defined keywords
+    - publications_with_errors: list where a publication is saved if 
+                                any error occurs during the processing 
+      
+    OUTPUT:
+    - eid_list: a list of kept papers corresponding to the given topic
+    """    
 
-     # Selected keywords
-    # keywords=['hosting capacity','Hosting capacity','hosting capacities', 'Hosting capacities']
-    
     # Prepare a zero vector (used later as one of the function output)
     decision_vector=np.zeros(len(eid_list)) # 0 - drop the paper ; 1 - keep the paper 
 
@@ -96,37 +160,44 @@ def check_related_articles(eid_list,keywords,publications_with_errors):
             # Extract data on Abstact of given paper
             ss = AbstractRetrieval(paper_eid, view='FULL') 
                 
-            # Checking the matching of keywords 
-            # in abstract
-            if hasattr(ss, 'abstract'):
+            # Checking the matching of keywords in abstract
+            if hasattr(ss, 'abstract'): # if an abstract exists
                 paper_abstract=ss.abstract # extract a paper abstract 
                 
+                # Check if any keywords exist in a paper abstract 
                 if any(keyword in paper_abstract for keyword in keywords):
                     decision_vector[idx]=1 # add 1 into a zero vector
             
-            if decision_vector[idx]!=1:
-                # in keywords
-                if hasattr(ss, 'authkeywords'):
+            if decision_vector[idx]!=1: # if still zero
+                # Check keywords in author keywords
+                if hasattr(ss, 'authkeywords'):# if author keywords exist
                     paper_keywords=ss.authkeywords # extract author keywords 
                     
+                    # Check if any keywords exist in  paper_keywords
                     if paper_keywords is not None and any(keyword in paper_keywords for keyword in keywords):
                         decision_vector[idx]=1 # add 1 into a zero vector
 
-            if decision_vector[idx]!=1:
-                # in title 
-                if hasattr(ss, 'title'):
-                    paper_title=ss.title # extract a paper's title 
+            if decision_vector[idx]!=1: # if still zero
+                # Check keywords in title 
+                if hasattr(ss, 'title'): # if a title exists 
+                    paper_title=ss.title # extract a paper's title
+                    
+                    # Check if any keywords exist in title
                     if any(keyword in paper_title for keyword in keywords):
                         decision_vector[idx]=1 # add 1 into a zero vector
                         
         except Exception as exception: # if any error with AbstractRetrieval occured
 
+            # Print in command line the error name and eid of a paper
             print(type(exception).__name__,'with ',paper_eid)
+            
+            # Save the paper eid in a special list (for post analysis)
             publications_with_errors.append([type(exception).__name__,'with ',paper_eid])
+            
+            # Continue 
             pass
         
-    # -------------------------------------------------------------------------------
-    # Deciding on the papers: drop or keep 
+    # Deciding on the paper: drop or keep (in a population)
     if np.sum(decision_vector)>0: # if there is at least one '1'
         
         # Find the indexes of ones in a decision_vector
@@ -139,10 +210,13 @@ def check_related_articles(eid_list,keywords,publications_with_errors):
         for i in range(len(ones_indexes)):
             index=ones_indexes[i]
             intermediate_list.append(eid_list[index])
-            
+        
+        # Save  intermediate_list as output of the function  
         eid_list=intermediate_list
         
-    else: # if all values are zero in ones_indexes 
+    else: # if all values are zero in ones_indexes
+        
+        # Assume eid_list=0
         eid_list=0
         
     return eid_list       
@@ -152,11 +226,16 @@ def check_related_articles(eid_list,keywords,publications_with_errors):
 # Function to retrive the metadata for each paper from scopus populations
 def retrieve_paper_data(paper_population):
     """
-    This function retrieves the metadata for each paper from scopus populations 
+    This function retrieves the metadata for each paper from a given
+    population of papers (in Scopus). 
     
+    INPUT:
+    - paper_population: a list of eids representing the population of papers 
+    
+    OUTPUT:
+    - df: a dataframe with several columns (see below)
     """
-    # global  paper_population
-    
+
     # Column names 
     column_names=['eid','title','publicationName','coverDate','refcount','citedby_count','doi']
     
@@ -187,8 +266,20 @@ def retrieve_paper_data(paper_population):
 
 def ploting_connection_graph(paper_population,publications_outside_scopus):
     """
-    This function plots a population graph 
+    This function plots an interactive graph of paper population and saves
+    it in xlsx format.  
+    
+    INPUT: 
+    - paper_population - a population of papers (a list of eids)
+    - publications_outside_scopus - list of publications outside of scopus (required for get_EIDS)
+    
+    OUTPUT:  
+    interactive html graph: a html plot, automatically generated and opened in browser 
+    - graph_df.xlsx - excel table, representing the created graph
+    
     """
+    
+    # import neccesary packages 
     import networkx as nx
     import matplotlib.pyplot as plt
     from bokeh.io import output_notebook, show, save
@@ -196,9 +287,7 @@ def ploting_connection_graph(paper_population,publications_outside_scopus):
     from bokeh.plotting import figure
     from bokeh.plotting import from_networkx
     
-    # global paper_population
-    
-    # Create column names 
+    # Create column names (for an excel table)
     columns_name=['primary_list','secondary_list','Direction']
     direction_forward=1  # 'primary_secondary' it means the paper from primary list cites the paper from secondary list
     direction_backward=2 # 'secondary_primary' it means that the paper from SECONDARY list cites the paper from primary list 
@@ -269,24 +358,27 @@ def ploting_connection_graph(paper_population,publications_outside_scopus):
     #Add network graph to the plot
     plot.renderers.append(network_graph)
 
+    # Show a plot
     show(plot)
-    # # Set node sizes
-    # node_sizes = [100 if type(entry) !=int else 1 for entry in list(G.nodes())]
-    # node_colors = ['red' if type(entry) !=int else 'blue' for entry in list(G.nodes())]        
-
-    # # Draw graph
-    # plt.figure(figsize=(17,10))
-    # nx.draw(G, with_labels=False,node_size=node_sizes, node_color=node_colors)
-    # plt.show()
 
     return graph_df
 
 def calculate_connections_number(graph_df,paper_population):
     """
-    This function calculates the number of connections per each paper in a population
+    This function calculates the number of connections per each paper 
+    in a population of papers. 
+    
+    INPUT:
+    - graph_df: a dataframe generated in the function ploting_connection_graph()
+    - paper_population: a population of papers (a list of eids)
+    
+    OUTPUT:
+    - df: an intermediate column 
+    connections: a dataframe (paper's metadata+ number of connections inside of population) 
+    
     """
 
-    # Calculate the count  
+    # Calculate the count (the column for merging later)  
     df=graph_df.groupby(['primary_list','secondary_list']).size().reset_index().rename(columns={0:'count'})
 
     # Find a number of connections
@@ -295,8 +387,8 @@ def calculate_connections_number(graph_df,paper_population):
     # Extract metadata for population  
     population_data=retrieve_paper_data(paper_population)
 
+    # Merge into a new dataframe
     connections = pd.merge(population_data, connections,left_on='eid', right_on='primary_list')
-
 
     return df,connections
       

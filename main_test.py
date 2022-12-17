@@ -2,9 +2,9 @@ from pybliometrics.scopus import ScopusSearch,AbstractRetrieval,AuthorRetrieval
 # import time
 import pandas as pd 
 import numpy as np 
-import Python_for_literature_review_in_Scopus
-from Python_for_literature_review_in_Scopus import functions,data_classes
-from Python_for_literature_review_in_Scopus.data_classes import research_topic
+import python_for_scopus_literature_review
+from python_for_scopus_literature_review import functions,data_classes
+from python_for_scopus_literature_review.data_classes import research_topic
 
 #--------------------------------------------------------------------------
 #                                Case study
