@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
-from Python_for_literature_review_in_Scopus import functions
+from python_for_scopus_literature_review import functions
 
 class research_topic():
 
     def __init__(self,name,reference_paper_eid,keywords):
         """
-        Purpose: This function is run automatically when a new instance is created
+        This function is run automatically when a new instance is created
         Specifically,
         
         Inputs:
@@ -31,7 +31,7 @@ class research_topic():
     
     def analyze(self):
         """
-        Purpose:
+        This function does the principal analysis:
         
         
         Input:
