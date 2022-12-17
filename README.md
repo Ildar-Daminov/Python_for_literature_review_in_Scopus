@@ -1,4 +1,4 @@
-# Private working repository for SYSTER project
+# Python_for_literature_review_in_Scopus
 
 This python code reconstructs the graph of all related papers (indexed in scopus)for any given article. 
 
