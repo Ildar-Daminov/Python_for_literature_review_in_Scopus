@@ -12,6 +12,8 @@ This python code reconstructs the graph of all related papers (indexed in scopus
 ![Main_idea](https://user-images.githubusercontent.com/73365375/208321059-6da612a4-e411-486d-a25a-d805fa9372ae.jpg)
 
 
+## Increased view: 
+![increased_view](https://user-images.githubusercontent.com/73365375/208321127-40c12253-d77d-4fd7-af8c-2f91d962877d.jpg)
 
 
 ## Before getting started:
