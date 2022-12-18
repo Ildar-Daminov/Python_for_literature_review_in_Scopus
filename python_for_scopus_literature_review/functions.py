@@ -99,7 +99,7 @@ def get_EIDS(paper_object,publications_outside_scopus):
 
 def get_paper_population(eids_list,paper_population):
     """
-    This function check if papers from eids_lista already exist in a 
+    This function check if papers from eids_list already exist in a 
     population of papers (from Scopus). If yes, the code returns the 
     exisitng population. If not, the code adds the papers into 
     existing population and returns it.
@@ -390,5 +390,5 @@ def calculate_connections_number(graph_df,paper_population):
     # Merge into a new dataframe
     connections = pd.merge(population_data, connections,left_on='eid', right_on='primary_list')
 
-    return df,connections
+    return connections
       

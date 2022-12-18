@@ -13,7 +13,7 @@ from python_for_scopus_literature_review.data_classes import research_topic
 
 #----------------------------------Input data---------------------------------
 # Define th name of research topic 
-name='Anthony_code'
+name='self_consumption'
 
 # Define the eid of one reference paper 
 reference_paper_eid="2-s2.0-85123755228"
@@ -24,11 +24,11 @@ keywords=['collective self-consumption'
 
 
 #-------------------------------Doing the analysis---------------------------------
-# Create an object 
-hosting_capacity=research_topic(name,reference_paper_eid,keywords)
+# Create an object of research topic 
+self_consumption=research_topic(name,reference_paper_eid,keywords)
 
-# Analyze the object "hosting capacity"
-results=hosting_capacity.analyze()
+# Analyze the object "self_consumption"
+results=self_consumption.analyze()
 
 
 # -------------------------------- Output data---------------------------------

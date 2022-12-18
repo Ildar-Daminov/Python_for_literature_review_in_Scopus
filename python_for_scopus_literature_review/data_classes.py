@@ -4,83 +4,100 @@ from python_for_scopus_literature_review import functions
 
 class research_topic():
 
+    # Function for creating the object of research topic 
     def __init__(self,name,reference_paper_eid,keywords):
         """
-        This function is run automatically when a new instance is created
-        Specifically,
+        This function is run automatically when a new instance of 
+        research topic is created. This allows us to create an object
         
-        Inputs:
-        - self
-        - name
-        - reference_paper_eid
-        - keywords
+        INPUTS:
+        - self: convention needed to create a function for the class
+        - name: a nae of research topic (any name defined by user)
+        - reference_paper_eid: a paper's eid (index) in Scopus e.g. '2-s2.0-85085924004'
+                               a reference_paper_eid is defined in the main.py
+        - keywords: list of keywords defined by user in the main.py
         
-        Outputs:
-        - self
+        OUTPUTS:
+        - None: __init__ has a None output. But note that the object 
+                is created as an output with following data (see below) 
         
         """
-        self.name=name # name of the topic
+        # A research topic is created for following data
+        self.name=name # name of the research topic (any  user-defined string)
         self.reference_paper_eid=reference_paper_eid # e.g. 2-s2.0-85085924004
-        self.keywords=keywords              # lsit of keywords 
-        self.paper_population=[]            # empty list
-        self.publications_outside_scopus=[] # empty list
-        self.publications_with_errors=[]    # empty list
-        self.number_analysed_papers=0    # empty list
-   
+        self.keywords=keywords              # list of keywords 
+        self.paper_population=[]            # empty list (to be filled later)
+        self.publications_outside_scopus=[] # empty list (to be filled later)
+        self.publications_with_errors=[]    # empty list (to be filled later)
+        self.number_analyzed_papers=0    # empty list (to be filled later)
 
-    
+    # Function for conducting the anlysis
     def analyze(self):
         """
-        This function does the principal analysis:
+        This function does the principal analysis decsribed in the
+        documentation.
+
         
+        INPUT:
+        self: an empty object of research topic, created earlier in in the __init__  
         
-        Input:
+        OUTPUT:
+        self: a filled object of research topic
+                                    + 
+        Some excel files:
+        - Figure.html : an interactive netwrok graph repersenting the paper population
+        - Topic_name_outputs.xlsx: a lsit of papers corresponding to a research topic                               
+        - graph_df.xlsx : a network graph in excel format.
         
-        Output:
+        Note that one of columns in graph_df is named as 'Direction' having 1 or 2 values
+        1 means the paper from primary list cites the paper from secondary list
+        2 means that the paper from SECONDARY list cites the paper from primary list 
+        
         """
         
-        # ---------------------First iteration------------------------
-        print('Processing the reference eid')
+        # ----------------------- First stage ------------------------
+        # ----------------Creating the first population---------------
+
+        print('<<< First stage: processing the reference eid >>>')
 
         # Get citing papers for given reference paper
         citing_papers=functions.get_citing_papers(self.reference_paper_eid)
 
         # Get cited papers for given reference paper
         cited_papers=functions.get_cited_papers(self.reference_paper_eid)
-
+        
         # Get EID of these citing and cited papers 
         eid_list_citing=functions.get_EIDS(citing_papers,self.publications_outside_scopus)
         eid_list_cited=functions.get_EIDS(cited_papers,self.publications_outside_scopus)
 
-        # Investigate given papers using 2 layers-ahead  
+        # Keep papers corresponding to our research topic
         eid_list_citing=functions.check_related_articles(eid_list_citing,self.keywords,self.publications_with_errors)
         eid_list_cited=functions.check_related_articles(eid_list_cited,self.keywords,self.publications_with_errors)
 
-        # Get the paper population
+        # Add these papers into the paper population. For the first time population is created 
         functions.get_paper_population(eid_list_citing,self.paper_population)
         functions.get_paper_population(eid_list_cited,self.paper_population)
         
-        self.number_analysed_papers=0
         
-        
-         # ---------------------Second iteration------------------------
+        # --------------------- Second stage ------------------------
+        # --------------Processing each paper in population-----------
 
         # Assume that  papers were not analyzed yet 
-        number_analysed_papers=0
+        number_analyzed_papers=0
 
-        # Create a list of non-analysed and analysed papers 
-        non_analysed_papers=self.paper_population
-        analysed_papers=[] # empty list
+        # Create a list of non-analyzed and analyzed papers 
+        non_analyzed_papers=self.paper_population
+        analyzed_papers=[] # empty list
         errors_count=0 
         
-        print('Processing the population')
-        while number_analysed_papers!=len(self.paper_population): # while we do not analyze everything 
+        print('<<< Second stage: processing  each paper in population >>>')
+        while number_analyzed_papers!=len(self.paper_population): # while we do not analyze every paper in population
             
             # Refresh status of errors 
             no_errors_with_citing_papers=1 # 1 means true i.e. no erros exist
             no_errors_with_cited_papers=1 # 1 means true i.e. no erros exist
             
-            if number_analysed_papers==0: # first iteration
+            if number_analyzed_papers==0: # first iteration
                 
                 # Take a first paper from population
                 reference_paper_eid=self.paper_population[0] 
@@ -113,21 +130,21 @@ class research_topic():
                 
                 print('Population:', len(self.paper_population))
 
-                # increase the count of analysed papers  
-                number_analysed_papers+=1
-                print('Papers analised: ',number_analysed_papers)
+                # increase the count of analyzed papers  
+                number_analyzed_papers+=1
+                print('Papers analyzed: ',number_analyzed_papers)
 
-                analysed_papers.append(reference_paper_eid)
+                analyzed_papers.append(reference_paper_eid)
                 
-                # Remove analysed paper from non_analysed_papers 
-                non_analysed_papers.remove(reference_paper_eid)
-                print('Non_analysed:', len(non_analysed_papers))
-                print(' ')
+                # Remove analyzed paper from non_analyzed_papers 
+                non_analyzed_papers.remove(reference_paper_eid)
+                print('Non_analyzed:', len(non_analyzed_papers))
+                print(' ') # empty line in a command window
                 
-            else: # number_analysed_papers!=0 i.e. >0
+            else: # number_analyzed_papers!=0 i.e. >0
                 
-                # Take a first paper from non_analysed_papers
-                reference_paper_eid=non_analysed_papers[0] 
+                # Take a first paper from non_analyzed_papers
+                reference_paper_eid=non_analyzed_papers[0] 
                 
                 try: 
                     # Get citing papers for given reference paper
@@ -177,29 +194,32 @@ class research_topic():
             print('Population:', len(self.paper_population))
 
             # increase the count 
-            number_analysed_papers+=1
-            print('Papers analised: ',number_analysed_papers,'or ',round(number_analysed_papers/len(self.paper_population)*100,2),' %')
+            number_analyzed_papers+=1
+            print('Papers analyzed: ',number_analyzed_papers,'or ',round(number_analyzed_papers/len(self.paper_population)*100,2),' %')
 
-            # Add to the list of analysed papers
-            analysed_papers.append(reference_paper_eid)
+            # Add to the list of analyzed papers
+            analyzed_papers.append(reference_paper_eid)
 
-            # Update non-analysed papers with consideration of newly populated papers
-            non_analysed_papers = list(set(self.paper_population).difference(analysed_papers))
-            print('Non_analysed:', len(non_analysed_papers))
+            # Update non-analyzed papers with consideration of newly populated papers
+            non_analyzed_papers = list(set(self.paper_population).difference(analyzed_papers))
+            print('Non_analyzed:', len(non_analyzed_papers))
             print(' ')
             
-        # ---------------------Postprocessing------------------------
-        print('Postprocessing of population')
+        # --------------------------  Third stage ----------------------------
+        # --------------------- Postprocessing of results --------------------
+        
+        print('<<< Third stage: postprocessing of results >>>')
         
         # Ploting the graph of paper population 
         graph_df=functions.ploting_connection_graph(self.paper_population,self.publications_outside_scopus)
 
         # Calculate the number of connections 
-        df_connections,connections=functions.calculate_connections_number(graph_df,self.paper_population)    
-        
+        connections=functions.calculate_connections_number(graph_df,self.paper_population)    
         
         # Save an output
         connections.to_excel(self.name+'_'+'outputs.xlsx')
-        print('<<<<Execution is finalized>>>>')
+        
+        # Print that the analysis is finsihed
+        print('<<<< Analysis is finished >>>>')
 
         return self
