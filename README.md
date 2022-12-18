@@ -9,7 +9,7 @@ This python code reconstructs the graph of all related papers (indexed in scopus
 
 
 ## Understanding the main logic of code: 
-
+![Main_idea](https://user-images.githubusercontent.com/73365375/208321059-6da612a4-e411-486d-a25a-d805fa9372ae.jpg)
 
 
 
