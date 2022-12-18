@@ -31,6 +31,10 @@ results=self_consumption.analyze()
 
 
 # -------------------------------- Output data ---------------------------------
+# see the outputs xlsx - the main file with relevant publications 
+
+# Additional files as publciations outside of scopus and with errors  
 np.save(results.name+'_'+'publications_outside_scopus.npy',results.publications_outside_scopus)
 np.save(results.name+'_'+'publications_with_errors.npy',results.publications_with_errors)
 np.save(results.name+'_'+'paper_population.npy',results.paper_population)
+
