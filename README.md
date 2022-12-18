@@ -1,4 +1,5 @@
-# Python_for_literature_review_in_Scopus
+![Python_for_literature_review](https://user-images.githubusercontent.com/73365375/208320965-24fe4441-5ca9-4749-bb73-f17045f511e1.jpg)
+
 
 This python code reconstructs the graph of all related papers (indexed in scopus)for any given article. 
 
