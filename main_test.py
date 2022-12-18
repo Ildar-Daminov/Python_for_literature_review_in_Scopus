@@ -10,7 +10,7 @@ from python_for_scopus_literature_review.data_classes import research_topic
 #--------------------------------------------------------------------------
 
 
-#----------------------------------Input data---------------------------------
+#--------------------------------- Input data --------------------------------
 # Define th name of research topic 
 name='self_consumption'
 
@@ -22,7 +22,7 @@ keywords=['collective self-consumption'
           ]
 
 
-#-------------------------------Doing the analysis---------------------------------
+#------------------------------ Doing the analysis --------------------------------
 # Create an object of research topic 
 self_consumption=research_topic(name,reference_paper_eid,keywords)
 
@@ -30,7 +30,7 @@ self_consumption=research_topic(name,reference_paper_eid,keywords)
 results=self_consumption.analyze()
 
 
-# -------------------------------- Output data---------------------------------
+# -------------------------------- Output data ---------------------------------
 np.save(results.name+'_'+'publications_outside_scopus.npy',results.publications_outside_scopus)
 np.save(results.name+'_'+'publications_with_errors.npy',results.publications_with_errors)
 np.save(results.name+'_'+'paper_population.npy',results.paper_population)
