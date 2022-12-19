@@ -12,7 +12,7 @@ from python_for_scopus_literature_review.data_classes import research_topic
 
 #--------------------------------- Input data --------------------------------
 # Define th name of research topic 
-name='self_consumption'
+name='self_consumption' # also used for naming the xlsx and npy files  
 
 # Define the eid of one reference paper 
 reference_paper_eid="2-s2.0-85123755228"
@@ -37,4 +37,3 @@ results=self_consumption.analyze()
 np.save(results.name+'_'+'publications_outside_scopus.npy',results.publications_outside_scopus)
 np.save(results.name+'_'+'publications_with_errors.npy',results.publications_with_errors)
 np.save(results.name+'_'+'paper_population.npy',results.paper_population)
-

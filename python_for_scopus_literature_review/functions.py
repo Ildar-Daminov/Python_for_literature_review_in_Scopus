@@ -391,4 +391,3 @@ def calculate_connections_number(graph_df,paper_population):
     connections = pd.merge(population_data, connections,left_on='eid', right_on='primary_list')
 
     return connections
-      
