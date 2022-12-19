@@ -1,16 +1,16 @@
-# Python_for_literature_review_in_Scopus
+![Python_for_literature_review](https://user-images.githubusercontent.com/73365375/208320965-24fe4441-5ca9-4749-bb73-f17045f511e1.jpg)
 
-This python code reconstructs the graph of all related papers (indexed in scopus)for any given article. 
 
-![text](figures/graph.png)
-<sup>Fig. 1 The graph representing all the publications on the HC topic (the interactive version is [here](figures/)). A blue dot represents a publication and the black link is its connection with the other publication that cites it or where it is cited.</sup>
+
 
 
 
 ## Understanding the main logic of code: 
+![Main_idea](https://user-images.githubusercontent.com/73365375/208321059-6da612a4-e411-486d-a25a-d805fa9372ae.jpg)
 
 
-
+## Increased view: 
+![increased_view](https://user-images.githubusercontent.com/73365375/208321127-40c12253-d77d-4fd7-af8c-2f91d962877d.jpg)
 
 
 ## Before getting started:
