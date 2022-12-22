@@ -29,7 +29,7 @@ self_consumption=research_topic(name,reference_paper_eid,keywords)
 # Analyze the object "self_consumption"
 results=self_consumption.analyze()
 
-# Plot the graph
+# Plot the interactive graph
 results.plot_network_graph()
 
 # -------------------------------- Output data ---------------------------------
