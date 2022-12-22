@@ -264,9 +264,9 @@ def retrieve_paper_data(paper_population):
            
     return df # return dataframe with retreived data for all papers in population 
 
-def ploting_connection_graph(paper_population,publications_outside_scopus):
+def creating_connection_graph(name,paper_population,publications_outside_scopus):
     """
-    This function plots an interactive graph of paper population and saves
+    This function creates a network graph of publications and saves it 
     it in xlsx format.  
     
     INPUT: 
@@ -274,19 +274,10 @@ def ploting_connection_graph(paper_population,publications_outside_scopus):
     - publications_outside_scopus - list of publications outside of scopus (required for get_EIDS)
     
     OUTPUT:  
-    interactive html graph: a html plot, automatically generated and opened in browser 
     - graph_df.xlsx - excel table, representing the created graph
     
     """
-    
-    # import neccesary packages 
-    import networkx as nx
-    import matplotlib.pyplot as plt
-    from bokeh.io import output_notebook, show, save
-    from bokeh.models import Range1d, Circle, ColumnDataSource, MultiLine
-    from bokeh.plotting import figure
-    from bokeh.plotting import from_networkx
-    
+       
     # Create column names (for an excel table)
     columns_name=['primary_list','secondary_list','Direction']
     direction_forward=1  # 'primary_secondary' it means the paper from primary list cites the paper from secondary list
@@ -327,39 +318,12 @@ def ploting_connection_graph(paper_population,publications_outside_scopus):
             intermediate_df['secondary_list']=eid_list_cited
             intermediate_df['Direction']=list(str(direction_forward))*len(eid_list_cited)
             graph_df=pd.concat([graph_df,intermediate_df])
-        
-    # -------------- Plotting part ---------------------
-    graph_df.to_excel('graph_df.xlsx',index=False)
-
     
-    # Create a G graph between restaurants and customers
-    G=nx.from_pandas_edgelist(graph_df,
-                            target='primary_list',
-                            source='secondary_list') # 
+    # Create a filename 
+    filename=name+'_'+'graph_df.xlsx'
     
-    #Choose a title!
-    title = 'Interconnection of papers in their population'
-
-    #Establish which categories will appear when hovering over each node
-    HOVER_TOOLTIPS = [("Scopus eid", "@index")]
-
-    #Create a plot — set dimensions, toolbar, and title
-    plot = figure(width=1400, height=700,tooltips = HOVER_TOOLTIPS,
-              tools="pan,wheel_zoom,save,reset", active_scroll='wheel_zoom',
-            x_range=Range1d(-10.1, 10.1), y_range=Range1d(-10.1, 10.1), title=title)
-    network_graph = from_networkx(G, nx.spring_layout, scale=10, center=(0, 0))
-
-    #Set node size and color
-    network_graph.node_renderer.glyph = Circle(size=7, fill_color='skyblue')
-
-    #Set edge opacity and width
-    network_graph.edge_renderer.glyph = MultiLine(line_alpha=0.5, line_width=1)
-
-    #Add network graph to the plot
-    plot.renderers.append(network_graph)
-
-    # Show a plot
-    show(plot)
+    # Save to excel    
+    graph_df.to_excel(filename,index=False)
 
     return graph_df
 

@@ -210,8 +210,8 @@ class research_topic():
         
         print('<<< Third stage: postprocessing of results >>>')
         
-        # Ploting the graph of paper population 
-        graph_df=functions.ploting_connection_graph(self.paper_population,self.publications_outside_scopus)
+        # Ploting the graph of paper population (with saving as excel)
+        graph_df=functions.creating_connection_graph(self.name,self.paper_population,self.publications_outside_scopus)
 
         # Calculate the number of connections 
         connections=functions.calculate_connections_number(graph_df,self.paper_population)    
@@ -223,3 +223,73 @@ class research_topic():
         print('<<<< Analysis is finished >>>>')
 
         return self
+    
+    def plot_network_graph(self):
+        """
+        This function plots the interactive graph showing how publication are interrelated
+
+        INPUT:
+        self: an filled object of research topic after the function analyze() was used
+        
+        OUTPUT:
+        - Figure.html : an interactive netwrok graph repersenting the paper population
+
+        """        
+        
+        # import neccesary packages 
+        from pathlib import Path
+        import networkx as nx
+        from bokeh.io import show
+        from bokeh.models import Range1d, Circle, MultiLine
+        from bokeh.plotting import figure
+        from bokeh.plotting import from_networkx
+        
+        if self.paper_population: # if this list is NOT empty then plot the figure 
+            
+            # Find the filename graph_df.xlsx
+            filename=self.name+'_'+'graph_df.xlsx'
+            
+            # Check the path of file in current directory
+            path=Path(filename)
+            
+            if path.is_file(): # if file exists
+                
+                # Read the graph_df.xlsx
+                graph_df=pd.read_excel(filename)
+                
+                # Create a G graph between restaurants and customers
+                G=nx.from_pandas_edgelist(graph_df,
+                                        target='primary_list',
+                                        source='secondary_list') # 
+                
+                #Choose a title
+                title = 'Interconnection of papers in their population'
+
+                #Establish which categories will appear when hovering over each node
+                HOVER_TOOLTIPS = [("Scopus eid", "@index")]
+
+                #Create a plot — set dimensions, toolbar, and title
+                plot = figure(width=1400, height=700,tooltips = HOVER_TOOLTIPS,
+                        tools="pan,wheel_zoom,save,reset", active_scroll='wheel_zoom',
+                        x_range=Range1d(-10.1, 10.1), y_range=Range1d(-10.1, 10.1), title=title)
+                network_graph = from_networkx(G, nx.spring_layout, scale=10, center=(0, 0))
+
+                #Set node size and color
+                network_graph.node_renderer.glyph = Circle(size=7, fill_color='skyblue')
+
+                #Set edge opacity and width
+                network_graph.edge_renderer.glyph = MultiLine(line_alpha=0.5, line_width=1)
+
+                #Add network graph to the plot
+                plot.renderers.append(network_graph)
+
+                # Show a plot
+                show(plot)
+                
+            else: # if file "graph_df" does not exist
+                print(f'The file {filename} does not exist')  
+
+        else: # if the list is empty
+            print('The paper population is empty. Use analyze() first to get a paper population')
+            pass # do nothing
+            
