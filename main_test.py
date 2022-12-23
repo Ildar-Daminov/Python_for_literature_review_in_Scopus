@@ -1,9 +1,9 @@
 from pybliometrics.scopus import ScopusSearch,AbstractRetrieval,AuthorRetrieval
 import pandas as pd 
 import numpy as np 
-import python_for_scopus_literature_review
-from python_for_scopus_literature_review import functions,classes
-from python_for_scopus_literature_review.classes import research_topic
+import source_code
+from source_code import functions,classes
+from source_code.classes import research_topic
 
 #--------------------------------------------------------------------------
 #                                Case study

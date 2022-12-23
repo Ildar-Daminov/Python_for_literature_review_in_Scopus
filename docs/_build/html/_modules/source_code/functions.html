@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>source_code.functions &mdash; Python for literature review in Scopus  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Python for literature review in Scopus
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">source_code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for literature review in Scopus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">source_code.functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for source_code.functions</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pybliometrics.scopus</span> <span class="kn">import</span> <span class="n">ScopusSearch</span><span class="p">,</span><span class="n">AbstractRetrieval</span><span class="p">,</span><span class="n">AuthorRetrieval</span>
+<span class="c1"># import time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="c1">#--------------------------------------------------------------------</span>
+                    <span class="c1"># Definition of functions # </span>
+<span class="c1">#--------------------------------------------------------------------</span>
+
+<span class="c1"># Get_citing_papers for reference paper</span>
+<div class="viewcode-block" id="get_citing_papers"><a class="viewcode-back" href="../../source_code.html#source_code.functions.get_citing_papers">[docs]</a><span class="k">def</span> <span class="nf">get_citing_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns a list of citing papers for a given paper.</span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - reference_paper_eid: the eid of paper in Scopus e.g 2-s2.0-85101235827</span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - citing_papers: citing papers of given eid</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a query </span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;REF(</span><span class="si">{</span><span class="n">reference_paper_eid</span><span class="si">}</span><span class="s2">)&quot;</span> 
+    
+    <span class="k">try</span><span class="p">:</span> <span class="c1"># try to query through ScopusSearch from pybliometrics</span>
+        <span class="c1"># Search in scopus using a query </span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">ScopusSearch</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> 
+        
+        <span class="c1"># Extract data  on  papers , citing the reference paper </span>
+        <span class="n">citing_papers</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">results</span> 
+    
+    <span class="k">except</span> <span class="p">:</span> <span class="c1"># if any problem with the ScopusSearch from pybliometrics</span>
+        
+        <span class="c1"># Assume citing_papers as 0</span>
+        <span class="n">citing_papers</span><span class="o">=</span><span class="mi">0</span>
+        
+    <span class="k">return</span> <span class="n">citing_papers</span> </div>
+
+<span class="c1"># Get_cited_papers for given reference paper </span>
+<div class="viewcode-block" id="get_cited_papers"><a class="viewcode-back" href="../../source_code.html#source_code.functions.get_cited_papers">[docs]</a><span class="k">def</span> <span class="nf">get_cited_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns a list of references for a given paper. </span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - reference_paper_eid: the eid of paper in Scopus e.g 2-s2.0-85101235827</span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - cited_papers: references of given paper&#39;s eid</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="c1"># Extract data on Abstact of reference paper</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="n">AbstractRetrieval</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s1">&#39;FULL&#39;</span><span class="p">)</span> 
+    
+    <span class="c1"># Extract the reference list of given paper (reference_paper_eid)</span>
+    <span class="n">cited_papers</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">references</span> 
+    
+    <span class="k">return</span> <span class="n">cited_papers</span> </div>
+
+<span class="c1"># Get eids for citing or cited paper </span>
+<div class="viewcode-block" id="get_EIDS"><a class="viewcode-back" href="../../source_code.html#source_code.functions.get_EIDS">[docs]</a><span class="k">def</span> <span class="nf">get_EIDS</span><span class="p">(</span><span class="n">paper_object</span><span class="p">,</span><span class="n">publications_outside_scopus</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns a list of eids for a given paper according</span>
+<span class="sd">    to Scopus database. If paper is  not in Scopus, then it is saved </span>
+<span class="sd">    into  publications_outside_scopus.</span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - paper_object: information extracted from query using a ScopusSearch</span>
+<span class="sd">    - publications_outside_scopus - a list for saving the publications which are not available in Scopus </span>
+<span class="sd">      </span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - eids_list: list of eids in Scopus database </span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create an empty list (for filling in)</span>
+    <span class="n">eids_list</span><span class="o">=</span><span class="p">[]</span>
+    
+    <span class="c1"># Checking some cases of paper_object</span>
+    <span class="k">if</span> <span class="n">paper_object</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+        <span class="k">pass</span> <span class="c1"># do nothing </span>
+    <span class="k">elif</span> <span class="n">paper_object</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1"># do nothing </span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">paper_object</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1"># do nothing </span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="c1"># Extract eids from paper object</span>
+        <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">paper_object</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">paper_object</span><span class="p">[</span><span class="n">paper</span><span class="p">],</span> <span class="s1">&#39;eid&#39;</span><span class="p">):</span> <span class="c1"># if eid exists</span>
+                
+                <span class="c1"># Extract eids for given paper</span>
+                <span class="n">eids_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paper_object</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span>
+                
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># if eid does not exist then extract id (same as eid but without &quot;2-s2.0-&quot;&quot;)</span>
+                
+                <span class="k">if</span>  <span class="n">paper_object</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># Append the paper&#39;s id to eids_list </span>
+                    <span class="n">eids_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;2-s2.0-&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">paper_object</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Append the paper name to the publications_outside_scopus </span>
+                    <span class="n">publications_outside_scopus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">paper_object</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span><span class="o">.</span><span class="n">fulltext</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">eids_list</span> </div>
+
+<div class="viewcode-block" id="get_paper_population"><a class="viewcode-back" href="../../source_code.html#source_code.functions.get_paper_population">[docs]</a><span class="k">def</span> <span class="nf">get_paper_population</span><span class="p">(</span><span class="n">eids_list</span><span class="p">,</span><span class="n">paper_population</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function check if papers from eids_list already exist in a </span>
+<span class="sd">    population of papers (from Scopus). If yes, the code returns the </span>
+<span class="sd">    exisitng population. If not, the code adds the papers into </span>
+<span class="sd">    existing population and returns it.</span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - eids_list: a list of papers - candidates for adding into a population </span>
+<span class="sd">    - paper_population: the current population of papers on a given topic</span>
+<span class="sd">      </span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - paper_population: updated (or current) population of papers on </span>
+<span class="sd">                        a given topic</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">eids_list</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># eids_list is not a zero</span>
+
+        <span class="c1"># Append eids_list to paper population</span>
+        <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eids_list</span><span class="p">)):</span> <span class="c1"># for each eid from eids_list</span>
+            
+            <span class="k">if</span> <span class="n">eids_list</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span> <span class="ow">in</span> <span class="n">paper_population</span><span class="p">:</span> <span class="c1"># if eid is already in population </span>
+                <span class="k">pass</span> <span class="c1"># do nothing </span>
+            
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># eids_list[eid] is not in population </span>
+                <span class="c1"># Add eids_list[eid] into population</span>
+                <span class="n">paper_population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eids_list</span><span class="p">[</span><span class="n">eid</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># if eids_list==0</span>
+        <span class="k">pass</span> <span class="c1"># do nothing </span>
+    
+    <span class="k">return</span> <span class="n">paper_population</span></div>
+
+
+<div class="viewcode-block" id="check_related_articles"><a class="viewcode-back" href="../../source_code.html#source_code.functions.check_related_articles">[docs]</a><span class="k">def</span> <span class="nf">check_related_articles</span><span class="p">(</span><span class="n">eid_list</span><span class="p">,</span><span class="n">keywords</span><span class="p">,</span><span class="n">publications_with_errors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function extracts only  papers corresponding to the given topic.</span>
+<span class="sd">    The criterion for keeping or not the paper is a presence of</span>
+<span class="sd">    predefined keywords in a paper&#39;s title, abstract or among author </span>
+<span class="sd">    keywords.</span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - eids_list: a list of papers for processing on keywords  </span>
+<span class="sd">    - keywords: user defined keywords</span>
+<span class="sd">    - publications_with_errors: list where a publication is saved if </span>
+<span class="sd">                                any error occurs during the processing </span>
+<span class="sd">      </span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - eid_list: a list of kept papers corresponding to the given topic</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="c1"># Prepare a zero vector (used later as one of the function output)</span>
+    <span class="n">decision_vector</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eid_list</span><span class="p">))</span> <span class="c1"># 0 - drop the paper ; 1 - keep the paper </span>
+
+    <span class="c1"># Checking the papers eids from the given eid_list</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">paper_eid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">eid_list</span><span class="p">):</span> <span class="c1"># for each paper eid</span>
+
+        <span class="c1"># Checking the abstract by keywords </span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Extract data on Abstact of given paper</span>
+            <span class="n">ss</span> <span class="o">=</span> <span class="n">AbstractRetrieval</span><span class="p">(</span><span class="n">paper_eid</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s1">&#39;FULL&#39;</span><span class="p">)</span> 
+                
+            <span class="c1"># Checking the matching of keywords in abstract</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">):</span> <span class="c1"># if an abstract exists</span>
+                <span class="n">paper_abstract</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">abstract</span> <span class="c1"># extract a paper abstract </span>
+                
+                <span class="c1"># Check if any keywords exist in a paper abstract </span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="n">paper_abstract</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">):</span>
+                    <span class="n">decision_vector</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># add 1 into a zero vector</span>
+            
+            <span class="k">if</span> <span class="n">decision_vector</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># if still zero</span>
+                <span class="c1"># Check keywords in author keywords</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="s1">&#39;authkeywords&#39;</span><span class="p">):</span><span class="c1"># if author keywords exist</span>
+                    <span class="n">paper_keywords</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">authkeywords</span> <span class="c1"># extract author keywords </span>
+                    
+                    <span class="c1"># Check if any keywords exist in  paper_keywords</span>
+                    <span class="k">if</span> <span class="n">paper_keywords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="n">paper_keywords</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">):</span>
+                        <span class="n">decision_vector</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># add 1 into a zero vector</span>
+
+            <span class="k">if</span> <span class="n">decision_vector</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># if still zero</span>
+                <span class="c1"># Check keywords in title </span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">):</span> <span class="c1"># if a title exists </span>
+                    <span class="n">paper_title</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">title</span> <span class="c1"># extract a paper&#39;s title</span>
+                    
+                    <span class="c1"># Check if any keywords exist in title</span>
+                    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="n">paper_title</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">):</span>
+                        <span class="n">decision_vector</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># add 1 into a zero vector</span>
+                        
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span> <span class="c1"># if any error with AbstractRetrieval occured</span>
+
+            <span class="c1"># Print in command line the error name and eid of a paper</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span><span class="s1">&#39;with &#39;</span><span class="p">,</span><span class="n">paper_eid</span><span class="p">)</span>
+            
+            <span class="c1"># Save the paper eid in a special list (for post analysis)</span>
+            <span class="n">publications_with_errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">type</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span><span class="s1">&#39;with &#39;</span><span class="p">,</span><span class="n">paper_eid</span><span class="p">])</span>
+            
+            <span class="c1"># Continue </span>
+            <span class="k">pass</span>
+        
+    <span class="c1"># Deciding on the paper: drop or keep (in a population)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">decision_vector</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># if there is at least one &#39;1&#39;</span>
+        
+        <span class="c1"># Find the indexes of ones in a decision_vector</span>
+        <span class="n">ones_indexes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">decision_vector</span><span class="p">)</span> <span class="k">if</span> <span class="n">val</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Create an empty list</span>
+        <span class="n">intermediate_list</span><span class="o">=</span><span class="p">[]</span>
+        
+        <span class="c1"># Extract the eids which corresponds to the status 1 (relevant publication)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ones_indexes</span><span class="p">)):</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">ones_indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">intermediate_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid_list</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        
+        <span class="c1"># Save  intermediate_list as output of the function  </span>
+        <span class="n">eid_list</span><span class="o">=</span><span class="n">intermediate_list</span>
+        
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># if all values are zero in ones_indexes</span>
+        
+        <span class="c1"># Assume eid_list=0</span>
+        <span class="n">eid_list</span><span class="o">=</span><span class="mi">0</span>
+        
+    <span class="k">return</span> <span class="n">eid_list</span>       </div>
+   
+   
+   
+<span class="c1"># Function to retrive the metadata for each paper from scopus populations</span>
+<div class="viewcode-block" id="retrieve_paper_data"><a class="viewcode-back" href="../../source_code.html#source_code.functions.retrieve_paper_data">[docs]</a><span class="k">def</span> <span class="nf">retrieve_paper_data</span><span class="p">(</span><span class="n">paper_population</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function retrieves the metadata for each paper from a given</span>
+<span class="sd">    population of papers (in Scopus). </span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - paper_population: a list of eids representing the population of papers </span>
+<span class="sd">    </span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - df: a dataframe with several columns (see below)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Column names </span>
+    <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;eid&#39;</span><span class="p">,</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;publicationName&#39;</span><span class="p">,</span><span class="s1">&#39;coverDate&#39;</span><span class="p">,</span><span class="s1">&#39;refcount&#39;</span><span class="p">,</span><span class="s1">&#39;citedby_count&#39;</span><span class="p">,</span><span class="s1">&#39;doi&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Create an empty dataframe  </span>
+    <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">paper_population</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># if paper_population does not have a data </span>
+        
+       <span class="k">pass</span> <span class="c1"># do nothing and return df without data </span>
+   
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># if population is NOT None </span>
+        
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">paper_eid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">paper_population</span><span class="p">):</span>  <span class="c1"># for each paper eid      </span>
+           
+           <span class="c1"># Retrieve data for a given paper  </span>
+           <span class="n">paper_data</span> <span class="o">=</span> <span class="n">AbstractRetrieval</span><span class="p">(</span><span class="n">paper_eid</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s1">&#39;FULL&#39;</span><span class="p">)</span> <span class="c1"># Extract entire metadata on Abstact of reference paper</span>
+           
+           <span class="c1"># Preselect the data for df</span>
+           <span class="n">retrieved_data</span><span class="o">=</span><span class="p">[</span><span class="n">paper_eid</span><span class="p">,</span> <span class="n">paper_data</span><span class="o">.</span><span class="n">title</span><span class="p">,</span><span class="n">paper_data</span><span class="o">.</span><span class="n">publicationName</span><span class="p">,</span><span class="n">paper_data</span><span class="o">.</span><span class="n">coverDate</span><span class="p">,</span><span class="n">paper_data</span><span class="o">.</span><span class="n">refcount</span><span class="p">,</span><span class="n">paper_data</span><span class="o">.</span><span class="n">citedby_count</span><span class="p">,</span><span class="n">paper_data</span><span class="o">.</span><span class="n">doi</span><span class="p">]</span>
+           
+           <span class="c1"># Create an intermediate dataframe with retreived data for the given paper</span>
+           <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">retrieved_data</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+           
+           <span class="c1"># Concatenate dataframes df and df2</span>
+           <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span><span class="n">df2</span><span class="p">])</span>
+           
+    <span class="k">return</span> <span class="n">df</span> <span class="c1"># return dataframe with retreived data for all papers in population </span></div>
+
+<div class="viewcode-block" id="creating_connection_graph"><a class="viewcode-back" href="../../source_code.html#source_code.functions.creating_connection_graph">[docs]</a><span class="k">def</span> <span class="nf">creating_connection_graph</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">paper_population</span><span class="p">,</span><span class="n">publications_outside_scopus</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function creates a network graph of publications and saves it </span>
+<span class="sd">    it in xlsx format.  </span>
+<span class="sd">    </span>
+<span class="sd">    INPUT: </span>
+<span class="sd">    - paper_population - a population of papers (a list of eids)</span>
+<span class="sd">    - publications_outside_scopus - list of publications outside of scopus (required for get_EIDS)</span>
+<span class="sd">    </span>
+<span class="sd">    OUTPUT:  </span>
+<span class="sd">    - graph_df.xlsx - excel table, representing the created graph</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+       
+    <span class="c1"># Create column names (for an excel table)</span>
+    <span class="n">columns_name</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;primary_list&#39;</span><span class="p">,</span><span class="s1">&#39;secondary_list&#39;</span><span class="p">,</span><span class="s1">&#39;Direction&#39;</span><span class="p">]</span>
+    <span class="n">direction_forward</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># &#39;primary_secondary&#39; it means the paper from primary list cites the paper from secondary list</span>
+    <span class="n">direction_backward</span><span class="o">=</span><span class="mi">2</span> <span class="c1"># &#39;secondary_primary&#39; it means that the paper from SECONDARY list cites the paper from primary list </span>
+    
+    <span class="c1"># Create an empty dataframe </span>
+    <span class="n">graph_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_name</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">paper_eid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">paper_population</span><span class="p">):</span>  <span class="c1"># for each paper eid</span>
+        
+        <span class="c1"># Get citing and cited papers for given reference paper</span>
+        <span class="n">citing_papers</span><span class="o">=</span><span class="n">get_citing_papers</span><span class="p">(</span><span class="n">paper_eid</span><span class="p">)</span>
+        <span class="n">cited_papers</span><span class="o">=</span><span class="n">get_cited_papers</span><span class="p">(</span><span class="n">paper_eid</span><span class="p">)</span>
+
+        <span class="c1"># Get EID of these citing and cited papers </span>
+        <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">citing_papers</span><span class="p">,</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+        <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">cited_papers</span><span class="p">,</span><span class="n">publications_outside_scopus</span><span class="p">)</span>        
+        
+        <span class="n">eid_list_citing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">)</span> <span class="c1"># convert to set </span>
+        <span class="n">eid_list_cited</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">)</span>  <span class="c1"># convert to set      </span>
+
+        <span class="c1"># Apply intersection to sets and convert to list </span>
+        <span class="n">eid_list_citing</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">paper_population</span><span class="p">))</span> 
+        <span class="n">eid_list_cited</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">paper_population</span><span class="p">))</span> 
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span> 
+            <span class="c1"># Prepare graph_df for citing articles </span>
+            <span class="n">intermediate_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_name</span><span class="p">)</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;primary_list&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">paper_eid</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">)</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;secondary_list&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">eid_list_citing</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;Direction&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">direction_backward</span><span class="p">))</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">)</span>
+            <span class="n">graph_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">graph_df</span><span class="p">,</span><span class="n">intermediate_df</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span> 
+            <span class="c1"># Prepare graph_df for cited articles (references)</span>
+            <span class="n">intermediate_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_name</span><span class="p">)</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;primary_list&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">paper_eid</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">)</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;secondary_list&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">eid_list_cited</span>
+            <span class="n">intermediate_df</span><span class="p">[</span><span class="s1">&#39;Direction&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">direction_forward</span><span class="p">))</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">)</span>
+            <span class="n">graph_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">graph_df</span><span class="p">,</span><span class="n">intermediate_df</span><span class="p">])</span>
+    
+    <span class="c1"># Create a filename </span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;graph_df.xlsx&#39;</span>
+    
+    <span class="c1"># Save to excel    </span>
+    <span class="n">graph_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">graph_df</span></div>
+
+<div class="viewcode-block" id="calculate_connections_number"><a class="viewcode-back" href="../../source_code.html#source_code.functions.calculate_connections_number">[docs]</a><span class="k">def</span> <span class="nf">calculate_connections_number</span><span class="p">(</span><span class="n">graph_df</span><span class="p">,</span><span class="n">paper_population</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function calculates the number of connections per each paper </span>
+<span class="sd">    in a population of papers. </span>
+<span class="sd">    </span>
+<span class="sd">    INPUT:</span>
+<span class="sd">    - graph_df: a dataframe generated in the function ploting_connection_graph()</span>
+<span class="sd">    - paper_population: a population of papers (a list of eids)</span>
+<span class="sd">    </span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    - df: an intermediate column </span>
+<span class="sd">    connections: a dataframe (paper&#39;s metadata+ number of connections inside of population) </span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Calculate the count (the column for merging later)  </span>
+    <span class="n">df</span><span class="o">=</span><span class="n">graph_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;primary_list&#39;</span><span class="p">,</span><span class="s1">&#39;secondary_list&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">})</span>
+
+    <span class="c1"># Find a number of connections</span>
+    <span class="n">connections</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;primary_list&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Extract metadata for population  </span>
+    <span class="n">population_data</span><span class="o">=</span><span class="n">retrieve_paper_data</span><span class="p">(</span><span class="n">paper_population</span><span class="p">)</span>
+
+    <span class="c1"># Merge into a new dataframe</span>
+    <span class="n">connections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">population_data</span><span class="p">,</span> <span class="n">connections</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;eid&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;primary_list&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">connections</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Ildar Daminov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

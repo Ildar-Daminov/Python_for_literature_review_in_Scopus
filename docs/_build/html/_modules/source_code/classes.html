@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>source_code.classes &mdash; Python for literature review in Scopus  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Python for literature review in Scopus
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">source_code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for literature review in Scopus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">source_code.classes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for source_code.classes</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">source_code</span> <span class="kn">import</span> <span class="n">functions</span>
+
+<div class="viewcode-block" id="research_topic"><a class="viewcode-back" href="../../source_code.html#source_code.classes.research_topic">[docs]</a><span class="k">class</span> <span class="nc">research_topic</span><span class="p">():</span>
+
+    <span class="c1"># Function for creating the object of research topic </span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">reference_paper_eid</span><span class="p">,</span><span class="n">keywords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is run automatically when a new instance of </span>
+<span class="sd">        research topic is created. This allows us to create an object</span>
+<span class="sd">        </span>
+<span class="sd">        INPUTS:</span>
+<span class="sd">        - self: convention needed to create a function for the class</span>
+<span class="sd">        - name: a nae of research topic (any name defined by user)</span>
+<span class="sd">        - reference_paper_eid: a paper&#39;s eid (index) in Scopus e.g. &#39;2-s2.0-85085924004&#39;</span>
+<span class="sd">                               a reference_paper_eid is defined in the main.py</span>
+<span class="sd">        - keywords: list of keywords defined by user in the main.py</span>
+<span class="sd">        </span>
+<span class="sd">        OUTPUTS:</span>
+<span class="sd">        - None: __init__ has a None output. But note that the object </span>
+<span class="sd">                is created as an output with following data (see below) </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># A research topic is created for following data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="c1"># name of the research topic (any  user-defined string)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_paper_eid</span><span class="o">=</span><span class="n">reference_paper_eid</span> <span class="c1"># e.g. 2-s2.0-85085924004</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span>              <span class="c1"># list of keywords </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="o">=</span><span class="p">[]</span>            <span class="c1"># empty list (to be filled later)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># empty list (to be filled later)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="o">=</span><span class="p">[]</span>    <span class="c1"># empty list (to be filled later)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_analyzed_papers</span><span class="o">=</span><span class="mi">0</span>    <span class="c1"># empty list (to be filled later)</span>
+
+    <span class="c1"># Function for conducting the anlysis</span>
+<div class="viewcode-block" id="research_topic.analyze"><a class="viewcode-back" href="../../source_code.html#source_code.classes.research_topic.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function does the principal analysis decsribed in the</span>
+<span class="sd">        documentation.</span>
+
+<span class="sd">        </span>
+<span class="sd">        INPUT:</span>
+<span class="sd">        self: an empty object of research topic, created earlier in in the __init__  </span>
+<span class="sd">        </span>
+<span class="sd">        OUTPUT:</span>
+<span class="sd">        self: a filled object of research topic</span>
+<span class="sd">                                    + </span>
+<span class="sd">        Some excel files:</span>
+<span class="sd">        - Figure.html : an interactive netwrok graph repersenting the paper population</span>
+<span class="sd">        - Topic_name_outputs.xlsx: a lsit of papers corresponding to a research topic                               </span>
+<span class="sd">        - graph_df.xlsx : a network graph in excel format.</span>
+<span class="sd">        </span>
+<span class="sd">        Note that one of columns in graph_df is named as &#39;Direction&#39; having 1 or 2 values</span>
+<span class="sd">        1 means the paper from primary list cites the paper from secondary list</span>
+<span class="sd">        2 means that the paper from SECONDARY list cites the paper from primary list </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># ----------------------- First stage ------------------------</span>
+        <span class="c1"># ----------------Creating the first population---------------</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;&lt; First stage: processing the reference eid &gt;&gt;&gt;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Get citing papers for given reference paper</span>
+        <span class="n">citing_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_citing_papers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+
+        <span class="c1"># Get cited papers for given reference paper</span>
+        <span class="n">cited_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_cited_papers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+        
+        <span class="c1"># Get EID of these citing and cited papers </span>
+        <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">citing_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+        <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">cited_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+
+        <span class="c1"># Keep papers corresponding to our research topic</span>
+        <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+        <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+
+        <span class="c1"># Add these papers into the paper population. For the first time population is created </span>
+        <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>
+        <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>
+        
+        
+        <span class="c1"># --------------------- Second stage ------------------------</span>
+        <span class="c1"># --------------Processing each paper in population-----------</span>
+
+        <span class="c1"># Assume that  papers were not analyzed yet </span>
+        <span class="n">number_analyzed_papers</span><span class="o">=</span><span class="mi">0</span>
+
+        <span class="c1"># Create a list of non-analyzed and analyzed papers </span>
+        <span class="n">non_analyzed_papers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span>
+        <span class="n">analyzed_papers</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># empty list</span>
+        <span class="n">errors_count</span><span class="o">=</span><span class="mi">0</span> 
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;&lt; Second stage: processing  each paper in population &gt;&gt;&gt;&#39;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">number_analyzed_papers</span><span class="o">!=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">):</span> <span class="c1"># while we do not analyze every paper in population</span>
+            
+            <span class="c1"># Refresh status of errors </span>
+            <span class="n">no_errors_with_citing_papers</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 1 means true i.e. no erros exist</span>
+            <span class="n">no_errors_with_cited_papers</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 1 means true i.e. no erros exist</span>
+            
+            <span class="k">if</span> <span class="n">number_analyzed_papers</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># first iteration</span>
+                
+                <span class="c1"># Take a first paper from population</span>
+                <span class="n">reference_paper_eid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+                
+                <span class="c1"># Get citing papers for given reference paper</span>
+                <span class="n">citing_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_citing_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+
+                <span class="c1"># Get cited papers for given reference paper</span>
+                <span class="n">cited_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_cited_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+
+                <span class="c1"># Get EID of these citing and cited papers </span>
+                <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">citing_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+                <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">cited_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    
+                    <span class="c1"># Extract only relevant papers</span>
+                    <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+                    
+                    <span class="c1"># Add cited papers into population</span>
+                    <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    
+                    <span class="c1"># Extract only relevant papers</span>
+                    <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+                    
+                    <span class="c1"># Add cited papers into population</span>
+                    <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>
+                
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Population:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">))</span>
+
+                <span class="c1"># increase the count of analyzed papers  </span>
+                <span class="n">number_analyzed_papers</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Papers analyzed: &#39;</span><span class="p">,</span><span class="n">number_analyzed_papers</span><span class="p">)</span>
+
+                <span class="n">analyzed_papers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+                
+                <span class="c1"># Remove analyzed paper from non_analyzed_papers </span>
+                <span class="n">non_analyzed_papers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non_analyzed:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_analyzed_papers</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="c1"># empty line in a command window</span>
+                
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># number_analyzed_papers!=0 i.e. &gt;0</span>
+                
+                <span class="c1"># Take a first paper from non_analyzed_papers</span>
+                <span class="n">reference_paper_eid</span><span class="o">=</span><span class="n">non_analyzed_papers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+                
+                <span class="k">try</span><span class="p">:</span> 
+                    <span class="c1"># Get citing papers for given reference paper</span>
+                    <span class="n">citing_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_citing_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">no_errors_with_citing_papers</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error with citing papers&#39;</span><span class="p">)</span>
+                    <span class="n">errors_count</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="k">try</span><span class="p">:</span> 
+                    <span class="c1"># Get cited papers for given reference paper</span>
+                    <span class="n">cited_papers</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_cited_papers</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">no_errors_with_cited_papers</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error with cited papers&#39;</span><span class="p">)</span>
+                    <span class="n">errors_count</span><span class="o">+=</span><span class="mi">1</span>
+                    
+                <span class="k">if</span> <span class="n">no_errors_with_citing_papers</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                    
+                    <span class="k">if</span> <span class="n">citing_papers</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># Get EID of these citing and cited papers </span>
+                        <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">citing_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+                        
+                        <span class="c1"># Extract only relevant papers</span>
+                        <span class="n">eid_list_citing</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+                        
+                        <span class="c1"># Add citing papers into population</span>
+                        <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_citing</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>    
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                            
+                <span class="k">if</span> <span class="n">no_errors_with_cited_papers</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                    
+                    <span class="k">if</span> <span class="n">cited_papers</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+                        <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">get_EIDS</span><span class="p">(</span><span class="n">cited_papers</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+
+                        <span class="c1"># Extract only relevant papers</span>
+                        <span class="n">eid_list_cited</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">check_related_articles</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_with_errors</span><span class="p">)</span>
+                        
+                        <span class="c1"># Add cited papers into population</span>
+                        <span class="n">functions</span><span class="o">.</span><span class="n">get_paper_population</span><span class="p">(</span><span class="n">eid_list_cited</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>        
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error problem&#39;</span><span class="p">)</span>
+
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Population:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">))</span>
+
+            <span class="c1"># increase the count </span>
+            <span class="n">number_analyzed_papers</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Papers analyzed: &#39;</span><span class="p">,</span><span class="n">number_analyzed_papers</span><span class="p">,</span><span class="s1">&#39;or &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">number_analyzed_papers</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39; %&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Add to the list of analyzed papers</span>
+            <span class="n">analyzed_papers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reference_paper_eid</span><span class="p">)</span>
+
+            <span class="c1"># Update non-analyzed papers with consideration of newly populated papers</span>
+            <span class="n">non_analyzed_papers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">analyzed_papers</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non_analyzed:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_analyzed_papers</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            
+        <span class="c1"># --------------------------  Third stage ----------------------------</span>
+        <span class="c1"># --------------------- Postprocessing of results --------------------</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;&lt; Third stage: postprocessing of results &gt;&gt;&gt;&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Ploting the graph of paper population (with saving as excel)</span>
+        <span class="n">graph_df</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">creating_connection_graph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">publications_outside_scopus</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the number of connections </span>
+        <span class="n">connections</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">calculate_connections_number</span><span class="p">(</span><span class="n">graph_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">)</span>    
+        
+        <span class="c1"># Save an output</span>
+        <span class="n">connections</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;outputs.xlsx&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Print that the analysis is finsihed</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;&lt;&lt; Analysis is finished &gt;&gt;&gt;&gt;&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+    
+<div class="viewcode-block" id="research_topic.plot_network_graph"><a class="viewcode-back" href="../../source_code.html#source_code.classes.research_topic.plot_network_graph">[docs]</a>    <span class="k">def</span> <span class="nf">plot_network_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function plots the interactive graph showing how publication are interrelated</span>
+
+<span class="sd">        INPUT:</span>
+<span class="sd">        self: an filled object of research topic after the function analyze() was used</span>
+<span class="sd">        </span>
+<span class="sd">        OUTPUT:</span>
+<span class="sd">        - Figure.html : an interactive netwrok graph repersenting the paper population</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>        
+        
+        <span class="c1"># import neccesary packages </span>
+        <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+        <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+        <span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">show</span>
+        <span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Range1d</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">MultiLine</span>
+        <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+        <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">from_networkx</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paper_population</span><span class="p">:</span> <span class="c1"># if this list is NOT empty then plot the figure </span>
+            
+            <span class="c1"># Find the filename graph_df.xlsx</span>
+            <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;graph_df.xlsx&#39;</span>
+            
+            <span class="c1"># Check the path of file in current directory</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span> <span class="c1"># if file exists</span>
+                
+                <span class="c1"># Read the graph_df.xlsx</span>
+                <span class="n">graph_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                
+                <span class="c1"># Create a G graph between restaurants and customers</span>
+                <span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">from_pandas_edgelist</span><span class="p">(</span><span class="n">graph_df</span><span class="p">,</span>
+                                        <span class="n">target</span><span class="o">=</span><span class="s1">&#39;primary_list&#39;</span><span class="p">,</span>
+                                        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;secondary_list&#39;</span><span class="p">)</span> <span class="c1"># </span>
+                
+                <span class="c1">#Choose a title</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Interconnection of papers in their population&#39;</span>
+
+                <span class="c1">#Establish which categories will appear when hovering over each node</span>
+                <span class="n">HOVER_TOOLTIPS</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Scopus eid&quot;</span><span class="p">,</span> <span class="s2">&quot;@index&quot;</span><span class="p">)]</span>
+
+                <span class="c1">#Create a plot — set dimensions, toolbar, and title</span>
+                <span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span><span class="n">tooltips</span> <span class="o">=</span> <span class="n">HOVER_TOOLTIPS</span><span class="p">,</span>
+                        <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;pan,wheel_zoom,save,reset&quot;</span><span class="p">,</span> <span class="n">active_scroll</span><span class="o">=</span><span class="s1">&#39;wheel_zoom&#39;</span><span class="p">,</span>
+                        <span class="n">x_range</span><span class="o">=</span><span class="n">Range1d</span><span class="p">(</span><span class="o">-</span><span class="mf">10.1</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="n">Range1d</span><span class="p">(</span><span class="o">-</span><span class="mf">10.1</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+                <span class="n">network_graph</span> <span class="o">=</span> <span class="n">from_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+                <span class="c1">#Set node size and color</span>
+                <span class="n">network_graph</span><span class="o">.</span><span class="n">node_renderer</span><span class="o">.</span><span class="n">glyph</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+
+                <span class="c1">#Set edge opacity and width</span>
+                <span class="n">network_graph</span><span class="o">.</span><span class="n">edge_renderer</span><span class="o">.</span><span class="n">glyph</span> <span class="o">=</span> <span class="n">MultiLine</span><span class="p">(</span><span class="n">line_alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1">#Add network graph to the plot</span>
+                <span class="n">plot</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">network_graph</span><span class="p">)</span>
+
+                <span class="c1"># Show a plot</span>
+                <span class="n">show</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+                
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># if file &quot;graph_df&quot; does not exist</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The file </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1"> does not exist&#39;</span><span class="p">)</span>  
+
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># if the list is empty</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The paper population is empty. Use analyze() first to get a paper population&#39;</span><span class="p">)</span>
+            <span class="k">pass</span> <span class="c1"># do nothing</span></div></div>
+            
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Ildar Daminov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
