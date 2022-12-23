@@ -4,7 +4,7 @@
 
 
 ## Documentation
-[![Publish docs](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml/badge.svg)](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml)
+[![Publish Docs](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml/badge.svg)](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml)
 
 ## Understanding the main logic of code: 
 ![Main_idea](https://user-images.githubusercontent.com/73365375/208321059-6da612a4-e411-486d-a25a-d805fa9372ae.jpg)
