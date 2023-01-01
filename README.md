@@ -38,7 +38,7 @@ Note: In additon to this excel file, Python generates npy files with the list of
 # Before getting started:
 First of all, you need to ensure an access to Scopus API via pybliometrics:
 
-### Install the pybliometrics package extracting data from Scopus
+### Install the pybliometrics package 
 Refer to the site for [pybliometrics instructions](https://pybliometrics.readthedocs.io/en/stable/)
 
 ### Get API keys for accessing Scopus via Elsevier API
