@@ -36,7 +36,7 @@ Note: In additon to this excel file, Python generates npy files with the list of
 
 
 # Before getting started:
-First of all you need have access to Scopus API via pybliometrics:
+First of all, you need to have access to Scopus API via pybliometrics:
 
 ### Install the pybliometrics package extracting data from Scopus
 Refer to the site for [pybliometrics instructions](https://pybliometrics.readthedocs.io/en/stable/)
@@ -49,15 +49,15 @@ Refer to the site for [pybliometrics instructions](https://pybliometrics.readthe
 3. It may be neccesary to change apikey from config.json (see main folder). Note that a key allows for 5,000 retrieval requests, or 20,000 search requests via the Scopus Search API per week. Without changing the apikey, it may be quickly depleted 
 
 
-## Get Started:
+# Get Started:
 Using a poetry to install all neccesary packages and run a code  
 1. Copy the reposioty to your computer and open it in your code software e.g. we use Visual Studio code
 2. If you do not have a poetry on your computer you can use pip to install it. Just copy ```pip install poetry``` into your Python terminal
-3. Once poetry is installed, create a virtual environment (folder .venv) where all neccesary packages will be installed. Just type  ```poetry install``` in Python terminal. This may take few minutes to install the packages and you can be sure that everything would work as on out computer. 
+3. Once poetry is installed, just type  ```poetry install``` in Python terminal. This will create a virtual environment (folder .venv) where all neccesary packages will be installed. Note that the installation may take few minutes but once it will be finished you can be sure that everything would work as on our computer. 
 4. During the installation accept that .venv will be installed in the same folder where you copied this Python module. Just click yes. 
 5. Usually this is done automatically but check that Python interpeter (.venv':poetry) is selected. If you are in Visual Studio code just see the right bottom corner 
-6. Make sure that you are using the university network (directly or using VPN) to access the Scopus. Otherwise you will get the 401 error Unauthorized
-7. Open main_test.py in your editor and change the name, reference_paper_eid and select your keywords. 
+6. Open main_test.py in your editor and change the name, reference_paper_eid and select your keywords. 
+7. Before running the code, make sure that you are using the university network (directly or using VPN) to access the Scopus. Otherwise you will get the 401 error Unauthorized
 8. Run ```main_test.py``` 
-9. After your will see <<<< Analysis is finished >>>> in Python terminal, check the excel file <name>_outputs.xlsx and/or interactive graph
+9. After the message <<<< Analysis is finished >>>>, check the resuts in the excel file <name>_outputs.xlsx and/or interactive graph
 
