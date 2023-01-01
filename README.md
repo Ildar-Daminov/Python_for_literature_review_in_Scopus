@@ -6,8 +6,20 @@
 ## Documentation
 [![Publish Docs](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml/badge.svg)](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml)
 
-## Understanding the main logic of code: 
-![Main_idea](https://user-images.githubusercontent.com/73365375/208321059-6da612a4-e411-486d-a25a-d805fa9372ae.jpg)
+## Understanding the main goal of code:
+
+Main goal of this Python tool is to help you obtaining a list of papers on a given topic available in Scopus with minimal input data.
+
+Input:
+- a name of a topic (for saving the results)
+- a reference paper via Scopus eid 
+- a list of your keywords for your topic of interest
+
+Output: 
+- Excel file <topic_name>_outputs.xlsx representing the list of papers in Scopus relevant to the  given topic
+- Interactive graph showing the population of papers in html format
+
+![Main_idea](https://user-images.githubusercontent.com/73365375/210181715-3f7a659e-c6c0-4b7e-a9a7-1c714d476af2.jpg)
 
 
 ## Increased view: 
