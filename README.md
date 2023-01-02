@@ -56,7 +56,7 @@ Using a poetry to install all neccesary packages and run a code
 3. Once poetry is installed, just type  ```poetry install``` in Python terminal. This will create a virtual environment (folder .venv) where all neccesary packages will be installed. Note that the installation may take few minutes but once it will be finished you can be sure that everything would work as on our computer. 
 4. During the installation accept that .venv will be installed in the same folder where you copied this Python module. Just click yes. 
 5. Usually this is done automatically but check that Python interpeter (.venv':poetry) is selected. If you are in Visual Studio code just see the right bottom corner 
-6. Open main_test.py in your editor and change the name, reference_paper_eid and select your keywords or run the example for the topic self-consumption (for the sake of example we intentionally used a long keyword to reduce the number of corresponding papers which allows us reducing the analysis time) . 
+6. Open main_test.py in your editor and change the name, reference_paper_eid and select your keywords or run the example for the topic self-consumption (for the sake of example, we intentionally used a long keyword to reduce the number of corresponding papers and therefore get the results faster) . 
 7. Before running the code, make sure that you are using the university network (directly or using VPN) to access the Scopus. Otherwise you will get the 401 error Unauthorized
 8. Run ```main_test.py``` 
 9. After the message <<<< Analysis is finished >>>>, check the resuts in the excel file <name>_outputs.xlsx and/or interactive graph
