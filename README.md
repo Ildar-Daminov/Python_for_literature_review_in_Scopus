@@ -32,7 +32,7 @@ After processing your query, Python generates a excel file with papers correspon
 ![list](https://user-images.githubusercontent.com/73365375/210182373-5b234e04-1020-4d17-8c8f-2c8be3f59a2c.jpg)
 <p align="center">Figure 3 - The example of excel file with the papers on the topic of hosting capacity </p>
 
-Note: In additon to this excel file, Python generates npy files with the list of publications outside Scopus and papers with the error like 404 (such situation happens if paper in Scopus is not correctly filled e.g. empty title, authors names, abstract etc). These npy files can be further processed to doublecheck of relevant papers ( not included in current version of module yet)
+Note: In additon to this excel file, Python generates npy files with the list of publications outside Scopus and papers with the error like 404 (such situation happens if paper in Scopus is not correctly filled e.g. empty title, authors names, abstract etc). These npy files can be further processed to doublecheck of relevant papers (this doublechecking is not included in current version of module yet)
 
 
 # Before getting started:
