@@ -6,7 +6,7 @@
 
 ## Understanding the main goal of code:
 
-Main goal of this Python tool is to help you obtaining a list of papers on a given topic available in Scopus with minimal input data.
+Main goal of this Python tool is generate a list of papers on a given topic available in Scopus with minimal input data.
 
 Input:
 - a name of a topic (for saving the results)
