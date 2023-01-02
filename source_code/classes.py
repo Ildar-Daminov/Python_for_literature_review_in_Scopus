@@ -3,7 +3,11 @@ import pandas as pd
 from source_code import functions
 
 class research_topic():
-
+    """
+    This class allows creating the object of user-defined topic and
+    extract the relevant papers (thanks to its functions) from Scopus  
+    
+    """
     # Function for creating the object of research topic 
     def __init__(self,name,reference_paper_eid,keywords):
         """
