@@ -38,7 +38,7 @@ Note: In additon to this excel file, Python generates npy files with the list of
 
 ## Python workflow: how does it work
 ![Python_workflow](https://user-images.githubusercontent.com/73365375/211413581-1a489dd0-7a07-4950-8a28-06523674b201.png)
-<p align="center">Figure 4 - How python tool analyzes if a paper is relevant for a given research topic or not </p>
+<p align="center">Figure 4 - Workflow of how a paper population is reconstructed inside of the python tool </p>
 
 # Before getting started:
 First of all, you need to ensure an access to Scopus API via pybliometrics:
