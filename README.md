@@ -36,6 +36,9 @@ After processing your query, Python generates a excel file with papers correspon
 
 Note: In additon to this excel file, Python generates npy files with the list of publications outside Scopus and papers with the error like 404 (such situation happens if paper in Scopus is not correctly filled e.g. empty title, authors names, abstract etc). These npy files can be further processed to doublecheck of relevant papers (this doublechecking is not included in current version of module yet)
 
+## Python workflow: how does it work
+![Python_workflow](https://user-images.githubusercontent.com/73365375/211413581-1a489dd0-7a07-4950-8a28-06523674b201.png)
+<p align="center">Figure 4 - How python tool analyzes if a paper is relevant for a given research topic or not </p>
 
 # Before getting started:
 First of all, you need to ensure an access to Scopus API via pybliometrics:
