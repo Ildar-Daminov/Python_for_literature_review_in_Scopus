@@ -67,6 +67,7 @@ Using a poetry to install all neccesary packages and run a code
 9. After the message <<<< Analysis is finished >>>>, check the resuts in the excel file <name>_outputs.xlsx and/or interactive graph
 
 # Quick start:
+Once you installed everything, you can simply change the input data (see Figure 5) and run your case studies 
 ![Python code](https://user-images.githubusercontent.com/73365375/211420715-443bd84d-c3ea-468c-965f-fb653241b07f.png)
 <p align="center">Figure 5 - The only input data to be changed in order to run your case in main_test.py </p>
 
