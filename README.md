@@ -1,6 +1,8 @@
 
 ## Documentation
 [![Publish Docs](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml/badge.svg)](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml)
+[![Check Documentation](docs/docs_badge.svg)](https://ildar-daminov.github.io/Python_for_literature_review_in_Scopus/)
+
 
 ![Python_for_literature_review](https://user-images.githubusercontent.com/73365375/208320965-24fe4441-5ca9-4749-bb73-f17045f511e1.jpg)
 
