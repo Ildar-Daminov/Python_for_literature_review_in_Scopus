@@ -23,7 +23,7 @@ Output:
 <p align="center">Figure 1 - Input and outputs of Python module </p>
 
 
-## Increased view of a population graph: 
+## Zoom of a population graph: 
 Interactive graph (shown above and its increased view below) representing the population of papers on a given topic consists of blue dots and lines.
 Each blue dot represents an article and lines between these dots represent their "connection". Here, a connection appears if one of the paper cites another one. 
 ![increased_view](https://user-images.githubusercontent.com/73365375/208321127-40c12253-d77d-4fd7-af8c-2f91d962877d.jpg)
