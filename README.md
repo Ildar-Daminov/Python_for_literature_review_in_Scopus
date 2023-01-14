@@ -37,7 +37,7 @@ After processing your query, Python generates a excel file with papers correspon
 Note: In additon to this excel file, Python generates npy files with the list of publications outside Scopus and papers with the error like 404 (such situation happens if paper in Scopus is not correctly filled e.g. empty title, authors names, abstract etc). These npy files can be further processed to doublecheck of relevant papers (this doublechecking is not included in current version of module yet)
 
 ## Python workflow: how does it work
-![Python_workflow](https://user-images.githubusercontent.com/73365375/211551610-72db9736-9168-4472-aba5-5ccf74218983.png)
+![Python_workflow](https://user-images.githubusercontent.com/73365375/212465231-c2ff4e45-8f3d-4970-9d92-caaf4c928145.png)
 <p align="center">Figure 4 - Workflow of how a paper population is reconstructed inside of the python tool </p>
 
 # Before getting started:
