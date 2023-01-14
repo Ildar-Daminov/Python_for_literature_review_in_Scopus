@@ -67,8 +67,10 @@ Using a poetry to install all neccesary packages and run a code
 9. After the message <<<< Analysis is finished >>>>, check the resuts in the excel file <name>_outputs.xlsx and/or interactive graph
 
 # Quick start:
-Once you installed everything, you can simply change the input data (see Figure 5) and run your case studies 
+Once you installed everything, you can simply change the input data (see Figure 5) and run your case studies. The eid of your reference paper you may find on the Scopus webpage of the article (see example on Figure 6). 
 ![Python code](https://user-images.githubusercontent.com/73365375/211420715-443bd84d-c3ea-468c-965f-fb653241b07f.png)
 <p align="center">Figure 5 - The only input data to be changed in order to run your case in main_test.py </p>
 
+![Scopus eid](https://user-images.githubusercontent.com/73365375/212465562-7d27ab6f-8ebc-4093-a532-dfa05a98c8ff.png)
+<p align="center">Figure 6 - The way how you may find the Scopus eid (e.g. '2-s2.0-85101235827'). </p>
 
