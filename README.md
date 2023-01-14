@@ -72,5 +72,5 @@ Once you installed everything, you can simply change the input data (see Figure 
 <p align="center">Figure 5 - The only input data to be changed in order to run your case in main_test.py </p>
 
   ![Scopus eid](https://user-images.githubusercontent.com/73365375/212465607-e63baf1f-f51c-4d15-84e7-9dbfbce24346.png)
-<p align="center">Figure 6 - The way how you may find the Scopus eid (e.g. '2-s2.0-85101235827'). </p>
+Figure 6 - The way how you may find the Scopus eid e.g. [2-s2.0-85101235827](https://www.scopus.com/record/display.uri?eid=2-s2.0-85101235827&origin=resultslist&sort=plf-f&src=s&sid=f716326e8305eae7e14603a5323abd22&sot=b&sdt=b&s=TITLE-ABS-KEY%28assessment+AND+dynamic+AND+transformer+AND+rating%29&sl=52&sessionSearchId=f716326e8305eae7e14603a5323abd22#abstract). 
 
