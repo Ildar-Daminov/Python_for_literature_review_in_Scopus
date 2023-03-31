@@ -2,6 +2,7 @@ from pybliometrics.scopus import ScopusSearch,AbstractRetrieval,AuthorRetrieval
 # import time
 import pandas as pd 
 import numpy as np 
+import re
 
 #--------------------------------------------------------------------
                     # Definition of functions # 
@@ -355,3 +356,50 @@ def calculate_connections_number(graph_df,paper_population):
     connections = pd.merge(population_data, connections,left_on='eid', right_on='primary_list')
 
     return connections
+
+
+def generate_variations(keywords):
+    all_variations = []  # Start with an empty list of variations
+    for keyword in keywords:
+        # Generate all possible variations for the keyword, including capitalization and pluralization
+        variations = [keyword, keyword.capitalize()]
+        if keyword.endswith("s"):
+            variations.append(keyword[:-1])  # Add singular version if keyword ends with "s"
+        else:
+            variations.append(keyword + "s")  # Add plural version otherwise
+
+        # Add the variations for this keyword to the list of all variations
+        all_variations.append(variations)
+
+    # Generate all possible combinations of the variations for each keyword, without combining words from different keywords
+    combined_variations = []
+    for variations in all_variations:
+        for variation in variations:
+            combined_variations.append([variation])
+
+    # Add variations with "of" between the keywords, including articles after "of"
+    for i in range(len(keywords)):
+        for j in range(len(keywords)):
+            if i != j:
+                for var1 in all_variations[i]:
+                    for var2 in all_variations[j]:
+                        # Add variations without articles
+                        combined_variations.append([var1, "of", var2])
+                        # Add variations with "a" or "the" after "of"
+                        if j > i:  # Only add articles if the second keyword comes after the first
+                            combined_variations.append([var1, "of", "a", var2])
+                            combined_variations.append([var1, "of", "the", var2])
+
+    # Join each variation into a single phrase and return the list of variations
+    variations = [' '.join(variation) for variation in combined_variations]
+
+    # Swap the order of the keywords and join with "of", including articles after "of"
+    for variation in combined_variations:
+        if len(variation) == 2:
+            variations.append(' '.join(reversed(variation)) + ' of')
+        elif len(variation) == 3 and variation[1] == "of":
+            variations.append(variation[2] + " of " + variation[0])
+            variations.append("the " + variation[2] + " of " + variation[0])
+            variations.append("a " + variation[2] + " of " + variation[0])
+
+    return variations
