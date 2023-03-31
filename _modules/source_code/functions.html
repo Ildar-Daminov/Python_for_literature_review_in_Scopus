@@ -68,6 +68,7 @@
 <span class="c1"># import time</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">re</span>
 
 <span class="c1">#--------------------------------------------------------------------</span>
                     <span class="c1"># Definition of functions # </span>
@@ -421,6 +422,53 @@
     <span class="n">connections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">population_data</span><span class="p">,</span> <span class="n">connections</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;eid&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;primary_list&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">connections</span></div>
+
+
+<div class="viewcode-block" id="generate_variations"><a class="viewcode-back" href="../../source_code.html#source_code.functions.generate_variations">[docs]</a><span class="k">def</span> <span class="nf">generate_variations</span><span class="p">(</span><span class="n">keywords</span><span class="p">):</span>
+    <span class="n">all_variations</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Start with an empty list of variations</span>
+    <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="c1"># Generate all possible variations for the keyword, including capitalization and pluralization</span>
+        <span class="n">variations</span> <span class="o">=</span> <span class="p">[</span><span class="n">keyword</span><span class="p">,</span> <span class="n">keyword</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="n">keyword</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">):</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Add singular version if keyword ends with &quot;s&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>  <span class="c1"># Add plural version otherwise</span>
+
+        <span class="c1"># Add the variations for this keyword to the list of all variations</span>
+        <span class="n">all_variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variations</span><span class="p">)</span>
+
+    <span class="c1"># Generate all possible combinations of the variations for each keyword, without combining words from different keywords</span>
+    <span class="n">combined_variations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">variations</span> <span class="ow">in</span> <span class="n">all_variations</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">variation</span> <span class="ow">in</span> <span class="n">variations</span><span class="p">:</span>
+            <span class="n">combined_variations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">variation</span><span class="p">])</span>
+
+    <span class="c1"># Add variations with &quot;of&quot; between the keywords, including articles after &quot;of&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keywords</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keywords</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">var1</span> <span class="ow">in</span> <span class="n">all_variations</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">for</span> <span class="n">var2</span> <span class="ow">in</span> <span class="n">all_variations</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                        <span class="c1"># Add variations without articles</span>
+                        <span class="n">combined_variations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">var1</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="n">var2</span><span class="p">])</span>
+                        <span class="c1"># Add variations with &quot;a&quot; or &quot;the&quot; after &quot;of&quot;</span>
+                        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>  <span class="c1"># Only add articles if the second keyword comes after the first</span>
+                            <span class="n">combined_variations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">var1</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">var2</span><span class="p">])</span>
+                            <span class="n">combined_variations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">var1</span><span class="p">,</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="n">var2</span><span class="p">])</span>
+
+    <span class="c1"># Join each variation into a single phrase and return the list of variations</span>
+    <span class="n">variations</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variation</span><span class="p">)</span> <span class="k">for</span> <span class="n">variation</span> <span class="ow">in</span> <span class="n">combined_variations</span><span class="p">]</span>
+
+    <span class="c1"># Swap the order of the keywords and join with &quot;of&quot;, including articles after &quot;of&quot;</span>
+    <span class="k">for</span> <span class="n">variation</span> <span class="ow">in</span> <span class="n">combined_variations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">variation</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; of&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">variation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">variation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;of&quot;</span><span class="p">:</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="n">variation</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;the &quot;</span> <span class="o">+</span> <span class="n">variation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="n">variation</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">variations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;a &quot;</span> <span class="o">+</span> <span class="n">variation</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="n">variation</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">variations</span></div>
 </pre></div>
 
            </div>
