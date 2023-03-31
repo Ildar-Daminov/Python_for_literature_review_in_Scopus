@@ -21,6 +21,12 @@ reference_paper_eid="2-s2.0-85123755228"
 keywords=['collective self-consumption'
           ]
 
+# Note: In this particular example, we intentionally used a long keyword to 
+# reduce the number of corresponding papers and therefore get the results faster
+
+
+# Find keyword variations 
+keywords=functions.generate_variations(keywords)
 
 #------------------------------ Doing the analysis --------------------------------
 # Create an object of research topic 
