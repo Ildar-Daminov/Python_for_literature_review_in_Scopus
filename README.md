@@ -2,6 +2,7 @@
 ## Documentation
 [![Publish Docs](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml/badge.svg)](https://github.com/Ildar-Daminov/Python_for_literature_review_in_Scopus/actions/workflows/main.yml)
 [![Check Documentation](docs/docs_badge.svg)](https://ildar-daminov.github.io/Python_for_literature_review_in_Scopus/)
+[![DOI](https://zenodo.org/badge/563276645.svg)](https://zenodo.org/doi/10.5281/zenodo.12509942)
 
 
 ![Python_for_literature_review](https://user-images.githubusercontent.com/73365375/208320965-24fe4441-5ca9-4749-bb73-f17045f511e1.jpg)
